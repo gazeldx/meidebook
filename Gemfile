@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+source 'https://ruby.taobao.org'
+# source 'http://rubygems.org'
 
 # Distribute your app as a gem
 # gemspec

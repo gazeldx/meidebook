@@ -1,5 +1,5 @@
 GEM
-  remote: https://rubygems.org/
+  remote: https://ruby.taobao.org/
   specs:
     activesupport (4.2.4)
       i18n (~> 0.7)
@@ -88,6 +88,3 @@ DEPENDENCIES
   sequel
   slim
   sqlite3
-
-BUNDLED WITH
-   1.10.6
