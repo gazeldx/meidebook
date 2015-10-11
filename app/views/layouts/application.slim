@@ -9,8 +9,8 @@ html lang='en'
     meta name='viewport' content='width=device-width,initial-scale=1'
     title = @title.present? ? "#{@title} | 阳明心学自修室" : "阳明心学自修室"
     = favicon_tag 'favicon.ico'
-    = stylesheet_link_tag 'bootstrap', 'application'
+    = stylesheet_link_tag 'jquery.mobile-1.4.5.min', 'application'
+    = javascript_include_tag 'jquery-1.11.1.min', 'jquery.mobile-1.4.5.min'
 
   body
-    | hello
     div class='row' = yield
