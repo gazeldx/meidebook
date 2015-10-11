@@ -15,6 +15,8 @@ source 'https://ruby.taobao.org'
 gem 'rake'
 
 # Component requirements
+gem 'bcrypt'
+gem 'will_paginate', '~>3.0'
 gem 'slim'
 gem 'sqlite3'
 gem 'sequel'

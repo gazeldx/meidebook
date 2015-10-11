@@ -7,6 +7,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    bcrypt (3.1.10)
     http_router (0.11.2)
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
@@ -78,13 +79,16 @@ GEM
       thread_safe (~> 0.1)
     url_mount (0.2.1)
       rack
+    will_paginate (3.0.7)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt
   padrino (= 0.12.5)
   rake
   sequel
   slim
   sqlite3
+  will_paginate (~> 3.0)

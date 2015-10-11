@@ -1,12 +1,13 @@
 module Xinxue
   class App < Padrino::Application
+    register WillPaginate::Sinatra
     register Padrino::Mailer
     register Padrino::Helpers
 
     enable :sessions
 
     get '/' do
-      slim :hello
+      render :hello
     end
 
     ##
