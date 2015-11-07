@@ -1,9 +1,5 @@
+/.idea
+/temp
 .DS_Store
-log/**/*
-tmp/**/*
-vendor/gems/*
-!vendor/gems/cache/
-.sass-cache/*
-db/*.db
-.*.sw*
-.idea
+pg.rb
+nohup.out

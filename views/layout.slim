@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title = @title.present? ? "#{@title} | 阳明心学自修室" : "阳明心学自修室"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    link rel="stylesheet" href="/stylesheets/jquery.mobile-1.4.5.min.css"
+    script src='/javascripts/jquery-1.11.1.min.js'
+    script src='/javascripts/jquery.mobile-1.4.5.min.js'
+
+  body
+    div data-role="page"
+      div data-role="header"
+        h1 心学
+
+      div role="main" class="ui-content"
+        == yield
+
+      div data-role="footer"
+        h4
+          | 自修室

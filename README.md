@@ -1,5 +1,5 @@
 ## 开发本项目的全过程笔记
-采用[padrino](http://www.padrinorb.com/guides)架构搭建本项目。
+采用[Sinatra](www.sinatrarb.com)架构搭建本项目。
 
 ```bash
 $ padrino generate project xinxue -d sequel # 创建项目并用sequel作为操作数据库的gem
