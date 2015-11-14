@@ -14,3 +14,12 @@ enable :sessions
 get '/' do
   slim :index
 end
+
+get '/register' do
+  slim :register
+end
+
+post '/user/create' do
+
+  slim :register
+end
