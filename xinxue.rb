@@ -5,9 +5,12 @@ require 'json'
 require 'slim'
 require 'active_support/all'
 
-DB = Sequel.sqlite("./db/xinxie_development.db")
+Sequel.sqlite("./db/xinxue_#{development? ? 'development' : 'production'}.db")
+
+Dir['./models/*.rb'].each { |file| require file }
 
 set :bind, '0.0.0.0'
+set :port, 1982
 
 enable :sessions
 
@@ -20,6 +23,22 @@ get '/register' do
 end
 
 post '/user/create' do
+  User.create(username: params[:username],
+              password: Digest::SHA1.hexdigest(params[:password]),
+              password_hint: params[:password_hint])
 
-  slim :register
+  slim :room
 end
+
+get '/login' do
+  slim :login
+end
+
+post '/do_login' do
+  User.find_by_username(params[:username]),
+              password: Digest::SHA1.hexdigest(params[:password]),
+              password_hint: params[:password_hint])
+
+  slim :room
+end
+

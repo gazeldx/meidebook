@@ -3,3 +3,4 @@
 .DS_Store
 pg.rb
 nohup.out
+/db/*.db

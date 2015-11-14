@@ -1,6 +1,6 @@
-h2 用户注册
+h2 用户登录
 
-form action='/user/create' method='post'
+form action='/do_login' method='post'
   label for='username' 用户名：
   input type='text' name='username' id='username' data-clear-btn='true' required='true'
 
@@ -8,7 +8,6 @@ form action='/user/create' method='post'
   input type='password' name='password' id='password' data-clear-btn='true' autocomplete='off' required='true'
 
   label for='password_hint' 密码提示：
-  input type='text' name='password_hint' id='password_hint' data-clear-btn='true' placeholder='在您遗忘密码时，给自己一个提示'
 
   button type='submit' class='ui-btn ui-shadow'
-    | 注 册
+    | 登 录
