@@ -19,8 +19,8 @@ configure do
   I18n.config.default_locale = :zh
 end
 
-set :bind, '0.0.0.0'
-set :port, 1982
+set :bind, '0.0.0.0' # 允许在非本机访问本服务
+# set :port, 4567 # 4567是默认端口,你可以改掉它
 
 enable :sessions
 
