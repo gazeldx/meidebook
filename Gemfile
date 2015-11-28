@@ -2,6 +2,7 @@ source 'https://ruby.taobao.org'
 # source 'https://rubygems.org'
 
 gem 'sinatra'
+gem 'sinatra-flash'
 gem 'sequel'
 gem 'sqlite3'
 gem 'slim'

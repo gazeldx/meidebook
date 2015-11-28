@@ -1,5 +1,8 @@
 h2 用户登录
 
+p style='color: red'
+  = flash[:error]
+
 form action='/do_login' method='post'
   label for='username' 用户名：
   input type='text' name='username' id='username' data-clear-btn='true' required='true'
@@ -7,7 +10,16 @@ form action='/do_login' method='post'
   label for='password' 密码：
   input type='password' name='password' id='password' data-clear-btn='true' autocomplete='off' required='true'
 
-  label for='password_hint' 密码提示：
+  label for='password_hint'
+    a href='#' onclick='showPasswordHint()'
+      | 密码提示
 
   button type='submit' class='ui-btn ui-shadow'
     | 登 录
+
+javascript:
+  function showPasswordHint() {
+    if ($('#username').) {
+
+    }
+  }

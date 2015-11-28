@@ -1,0 +1,4 @@
+en:
+  user:
+    username_not_exist: 用户名不存在！请重新输入en。
+    password_not_match: 密码错误！请重新输入en。
