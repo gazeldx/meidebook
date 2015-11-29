@@ -3,7 +3,10 @@ zh:
     title: 阳明心学自修室
     footer: 知行合一，止于至善
 
+  valid_combine_format: 请用字母、数字和下划线组合。
+
   user:
+    username: 用户名
     username_not_exist: 用户名不存在！请重新输入。
     password_not_match: 密码错误！请重新输入。
     default_nickname: 心学爱好者
@@ -12,3 +15,5 @@ zh:
     logout: 退出登录
     logout_success: 您已成功退出登录！
     not_login_yet: 您还没有登录，请先登录！
+
+

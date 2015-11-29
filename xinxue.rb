@@ -30,24 +30,25 @@ get '/' do
 end
 
 get '/register' do
-  puts "@user is #{@user.inspect}"
   @data_url = '/register'
   slim :register
 end
 
 post '/user/create' do
-  @user = User.new(username: params[:username],
+  user = User.new(username: params[:username],
                   password: Digest::SHA1.hexdigest(params[:password]),
                   password_hint: params[:password_hint])
 
-  if @user.valid?
-    @user.save
+  if user.valid?
+    user.save
 
-    set_login_session(@user)
+    set_login_session(user)
 
     redirect '/room'
   else
-    flash[:errors] = @user.errors
+    flash[:username] = params[:username]
+    flash[:password_hint] = params[:password_hint]
+    flash[:errors] = user.errors
     redirect '/register'
   end
 end
@@ -125,6 +126,7 @@ helpers do
   end
 
   def errors_message
+    # TODO: Add model to show Chinese username etc.
     if flash[:errors].present?
       full_msg = ''
       flash[:errors].each do |column, error_messages|
