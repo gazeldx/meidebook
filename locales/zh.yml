@@ -16,4 +16,8 @@ zh:
     logout_success: 您已成功退出登录！
     not_login_yet: 您还没有登录，请先登录！
 
+  errors:
+    min_length: 太短。至少要%{min}个字符！
+    max_length: 太长。至多允许%{max}个字符！
+    presence: 是必填项！
 

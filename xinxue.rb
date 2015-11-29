@@ -8,9 +8,6 @@ require 'json'
 require 'slim'
 require 'active_support/all'
 
-Sequel.sqlite("./db/xinxue_#{development? ? 'development' : 'production'}.db")
-Dir['./models/*.rb'].each { |file| require file }
-
 configure do
   I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
   I18n.load_path = Dir[File.join(settings.root, 'locales', '*.yml')]
@@ -18,6 +15,14 @@ configure do
   I18n.config.available_locales = [:en, :zh]
   I18n.config.default_locale = :zh
 end
+
+Sequel.sqlite("./db/xinxue_#{development? ? 'development' : 'production'}.db")
+Dir['./models/*.rb'].each { |file| require file }
+Sequel::Plugins::ValidationHelpers::DEFAULT_OPTIONS.merge!(
+  max_length: { message: lambda { |max| I18n.t('errors.max_length', max: max) }, nil_message: lambda { I18n.t('errors.presence') } },
+  min_length: { message: lambda { |min| I18n.t('errors.min_length', min: min) } },
+  presence: { message: lambda { I18n.t('errors.presence') } }
+)
 
 set :bind, '0.0.0.0' # 允许在非本机访问本服务
 # set :port, 4567 # 4567是默认端口,你可以改掉它
@@ -48,7 +53,7 @@ post '/user/create' do
   else
     flash[:username] = params[:username]
     flash[:password_hint] = params[:password_hint]
-    flash[:errors] = user.errors
+    flash_errors(user)
     redirect '/register'
   end
 end
@@ -126,16 +131,19 @@ helpers do
   end
 
   def errors_message
-    # TODO: Add model to show Chinese username etc.
     if flash[:errors].present?
       full_msg = ''
-      flash[:errors].each do |column, error_messages|
+      flash[:errors].except(:model_name).each do |column, error_messages|
         error_messages.each do |error_message|
-          full_msg = full_msg + '<li>' + column.to_s + ' ' + error_message + '</li>'
+          full_msg = full_msg + '<li>' + I18n.t("#{flash[:errors][:model_name]}.#{column.to_s}") + ' ' + error_message + '</li>'
         end
       end
       "<div id='error_explanation' style='color: red' role='alert'><ul>#{full_msg}</ul></div>"
     end
+  end
+
+  def flash_errors(model)
+    flash[:errors] = model.errors.merge(model_name: model.class.to_s.downcase)
   end
 end
 
