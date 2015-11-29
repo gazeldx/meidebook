@@ -83,14 +83,34 @@ get '/logout' do
   redirect '/'
 end
 
-def set_login_session
-  session[:id] = @user.id
-  session[:username] = @user.username
-  session[:nickname] = @user.nickname || I18n.t('user.default_nickname')
-  session[:email] = @user.email
-end
+helpers do
+  def set_login_session
+    session[:id] = @user.id
+    session[:username] = @user.username
+    session[:nickname] = @user.nickname || I18n.t('user.default_nickname')
+    session[:email] = @user.email
+  end
 
-def clear_session
-  session[:id], session[:username], session[:nickname], session[:email] = nil, nil, nil, nil
+  def clear_session
+    session[:id], session[:username], session[:nickname], session[:email] = nil, nil, nil, nil
+  end
+
+  def notice_info
+    result = ''
+    if flash[:notice]
+      result = "<p style='color: green'>#{flash[:notice]}</p>"
+      flash[:notice] = nil
+    end
+    result
+  end
+
+  def error_info
+    result = ''
+    if flash[:error]
+      result = "<p style='color: red'>#{flash[:error]}</p>"
+      flash[:error] = nil
+    end
+    result
+  end
 end
 

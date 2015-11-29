@@ -1,4 +1,8 @@
 zh:
+  site:
+    title: 阳明心学自修室
+    footer: 知行合一，止于至善
+
   user:
     username_not_exist: 用户名不存在！请重新输入。
     password_not_match: 密码错误！请重新输入。
