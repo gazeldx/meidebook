@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'sinatra/reloader' if development? #NOTICE: For debug, you need uncomment this line and "gem 'sinatra-reloader'" in Gemfile.
+require 'sinatra/reloader' if development? # 用于在测试环境时,不必重启就可以看到代码改动的结果
 require 'sinatra/flash'
 require 'i18n'
 require 'i18n/backend/fallbacks'
@@ -37,6 +37,7 @@ post '/user/create' do
               password: Digest::SHA1.hexdigest(params[:password]),
               password_hint: params[:password_hint])
 
+  @data_url = '/room'
   slim :room
 end
 
@@ -50,15 +51,46 @@ post '/do_login' do
 
   if @user.nil?
     flash[:error] = I18n.t('user.username_not_exist')
+    flash[:username] = params[:username]
     redirect '/login'
   else
     if @user.password == Digest::SHA1.hexdigest(params[:password])
-      @data_url = '/room'
-      slim :room
+      set_login_session
+
+      redirect '/room'
     else
       flash[:error] = I18n.t('user.password_not_match')
+      flash[:username] = params[:username]
       redirect '/login'
     end
   end
+end
+
+get '/room' do
+  if session[:id].blank?
+    flash[:notice] = I18n.t('user.not_login_yet') # TODO: 显示这个提示
+    redirect '/login'
+  else
+    @data_url = '/room'
+    slim :room
+  end
+end
+
+get '/logout' do
+  clear_session
+
+  flash[:notice] = I18n.t('user.logout_success') # TODO: 显示这个提示
+  redirect '/'
+end
+
+def set_login_session
+  session[:id] = @user.id
+  session[:username] = @user.username
+  session[:nickname] = @user.nickname || I18n.t('user.default_nickname')
+  session[:email] = @user.email
+end
+
+def clear_session
+  session[:id], session[:username], session[:nickname], session[:email] = nil, nil, nil, nil
 end
 

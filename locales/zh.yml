@@ -2,3 +2,6 @@ zh:
   user:
     username_not_exist: 用户名不存在！请重新输入。
     password_not_match: 密码错误！请重新输入。
+    default_nickname: 心学爱好者
+    logout_success: 您已成功退出登录！
+    not_login_yet: 您还没有登录，请先登录！
