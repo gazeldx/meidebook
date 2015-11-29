@@ -1,6 +1,7 @@
 h2 用户注册
 
 form action='/user/create' method='post'
+  == errors_message
   label for='username' 用户名：
   input type='text' name='username' id='username' data-clear-btn='true' required='true'
 

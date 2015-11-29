@@ -25,20 +25,31 @@ set :bind, '0.0.0.0' # 允许在非本机访问本服务
 enable :sessions
 
 get '/' do
+  @data_url = '/'
   slim :index
 end
 
 get '/register' do
+  puts "@user is #{@user.inspect}"
+  @data_url = '/register'
   slim :register
 end
 
 post '/user/create' do
-  User.create(username: params[:username],
-              password: Digest::SHA1.hexdigest(params[:password]),
-              password_hint: params[:password_hint])
+  @user = User.new(username: params[:username],
+                  password: Digest::SHA1.hexdigest(params[:password]),
+                  password_hint: params[:password_hint])
 
-  @data_url = '/room'
-  slim :room
+  if @user.valid?
+    @user.save
+
+    set_login_session(@user)
+
+    redirect '/room'
+  else
+    flash[:errors] = @user.errors
+    redirect '/register'
+  end
 end
 
 get '/login' do
@@ -55,7 +66,7 @@ post '/do_login' do
     redirect '/login'
   else
     if @user.password == Digest::SHA1.hexdigest(params[:password])
-      set_login_session
+      set_login_session(@user)
 
       redirect '/room'
     else
@@ -68,7 +79,7 @@ end
 
 get '/room' do
   if session[:id].blank?
-    flash[:notice] = I18n.t('user.not_login_yet') # TODO: 显示这个提示
+    flash[:notice] = I18n.t('user.not_login_yet')
     redirect '/login'
   else
     @data_url = '/room'
@@ -79,16 +90,16 @@ end
 get '/logout' do
   clear_session
 
-  flash[:notice] = I18n.t('user.logout_success') # TODO: 显示这个提示
+  flash[:notice] = I18n.t('user.logout_success')
   redirect '/'
 end
 
 helpers do
-  def set_login_session
-    session[:id] = @user.id
-    session[:username] = @user.username
-    session[:nickname] = @user.nickname || I18n.t('user.default_nickname')
-    session[:email] = @user.email
+  def set_login_session(user)
+    session[:id] = user.id
+    session[:username] = user.username
+    session[:nickname] = user.nickname || I18n.t('user.default_nickname')
+    session[:email] = user.email
   end
 
   def clear_session
@@ -111,6 +122,18 @@ helpers do
       flash[:error] = nil
     end
     result
+  end
+
+  def errors_message
+    if flash[:errors].present?
+      full_msg = ''
+      flash[:errors].each do |column, error_messages|
+        error_messages.each do |error_message|
+          full_msg = full_msg + '<li>' + column.to_s + ' ' + error_message + '</li>'
+        end
+      end
+      "<div id='error_explanation' style='color: red' role='alert'><ul>#{full_msg}</ul></div>"
+    end
   end
 end
 

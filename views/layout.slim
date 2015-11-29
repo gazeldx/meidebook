@@ -17,5 +17,9 @@ html
         == error_info
         == yield
 
+        - if session[:id]
+          a href='/logout' class='ui-btn ui-btn-inline ui-btn-b'
+            = I18n.t('user.logout')
+
       div data-role='footer'
         h4 = I18n.t('site.footer')
