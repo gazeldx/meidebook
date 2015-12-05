@@ -17,7 +17,8 @@ html
         == error_info
         == yield
 
-        - if session[:id]
+        - if session[:user_id]
+          br
           a href='/logout' class='ui-btn ui-btn-inline ui-btn-b'
             = I18n.t('user.logout')
 

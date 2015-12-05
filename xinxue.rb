@@ -84,7 +84,7 @@ post '/do_login' do
 end
 
 get '/room' do
-  if session[:id].blank?
+  if session[:user_id].blank?
     flash[:notice] = I18n.t('user.not_login_yet')
     redirect '/login'
   else
@@ -100,16 +100,45 @@ get '/logout' do
   redirect '/'
 end
 
+get '/posts/new' do
+  @data_url = '/posts/new'
+  slim '/posts/new'.to_sym
+end
+
+get '/posts' do
+  @posts = Post.where(user_id: session[:user_id])
+  @data_url = '/posts'
+  slim :'posts/index'
+end
+
+post '/post/create' do
+  post = Post.new(title: params[:title],
+                  body: params[:body],
+                  user_id: session[:user_id],
+                  created_at: Time.now,
+                  updated_at: Time.now)
+
+  if post.valid?
+    post.save
+    redirect '/posts'
+  else
+    flash[:title] = params[:title]
+    flash[:body] = params[:body]
+    flash_errors(post)
+    redirect '/posts/new'
+  end
+end
+
 helpers do
   def set_login_session(user)
-    session[:id] = user.id
+    session[:user_id] = user.id
     session[:username] = user.username
     session[:nickname] = user.nickname || I18n.t('user.default_nickname')
     session[:email] = user.email
   end
 
   def clear_session
-    session[:id], session[:username], session[:nickname], session[:email] = nil, nil, nil, nil
+    session[:user_id], session[:username], session[:nickname], session[:email] = nil, nil, nil, nil
   end
 
   def notice_info

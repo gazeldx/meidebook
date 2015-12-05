@@ -1,0 +1,16 @@
+a href='/posts/new' class='ui-btn ui-btn-inline ui-btn-b'
+  = I18n.t('post.new')
+
+table
+  tr
+    th 标题
+    th = I18n.t('post.body')
+    th 时间
+  - @posts.each do |post|
+    tr
+      td
+        = post.title
+      td
+        = post.body
+      td
+        = post.created_at.strftime("%-m月%-d日 %H:%M")
