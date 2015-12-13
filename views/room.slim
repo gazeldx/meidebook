@@ -1,4 +1,7 @@
 h2 欢迎你，#{session[:nickname]}。你已进入自修室。
 
+a href='/posts' class='ui-btn ui-btn-inline ui-btn-b'
+  = I18n.t('post.index')
+
 a href='/posts/new' class='ui-btn ui-btn-inline ui-btn-b'
   = I18n.t('post.new')

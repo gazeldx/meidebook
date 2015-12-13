@@ -130,6 +130,10 @@ post '/post/create' do
 end
 
 helpers do
+  def include_slim(name, options = {}, &block)
+    Slim::Template.new("#{name}.slim", options).render(self, &block)
+  end
+
   def set_login_session(user)
     session[:user_id] = user.id
     session[:username] = user.username

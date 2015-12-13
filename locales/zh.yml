@@ -17,6 +17,7 @@ zh:
     not_login_yet: 您还没有登录，请先登录！
 
   post:
+    index: 所有心得
     new: 撰写心学心得
     body: 正文
 
