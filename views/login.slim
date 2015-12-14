@@ -1,20 +1,26 @@
-h2 用户登录
+- if logged?
+  h4 您已经登录！
+- else
+  h2 用户登录
 
-form action='/do_login' method='post'
-  label for='username' 用户名：
-  input type='text' name='username' id='username' value=flash[:username] data-clear-btn='true' required='true'
+  form action='/do_login' method='post'
+    label for='username' 用户名：
+    input type='text' name='username' id='username' value=flash[:username] data-clear-btn='true' required='true'
 
-  label for='password' 密码：
-  input type='password' name='password' id='password' data-clear-btn='true' autocomplete='off' required='true'
+    label for='password' 密码：
+    input type='password' name='password' id='password' data-clear-btn='true' autocomplete='off' required='true'
 
-  /label for='password_hint'
-    a href='#' onclick='showPasswordHint()'
-      | 密码提示
+    /label for='password_hint'
+      a href='#' onclick='showPasswordHint()'
+        | 密码提示
 
-  button type='submit' class='ui-btn ui-shadow'
-    | 登 录
+    button type='submit' class='ui-btn ui-shadow'
+      | 登 录
 
-javascript:
-  function showPasswordHint() {
-    //if ($('#username').) { }
-  }
+    a href='/register' class='ui-btn ui-btn-inline ui-btn-b'
+      = I18n.t('user.register')
+
+  javascript:
+    function showPasswordHint() {
+      //if ($('#username').) { }
+    }

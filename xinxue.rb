@@ -134,6 +134,14 @@ helpers do
     Slim::Template.new("#{name}.slim", options).render(self, &block)
   end
 
+  def current_user
+    User.find(session[:user_id]) if session[:user_id].present?
+  end
+
+  def logged?
+    session[:user_id].present?
+  end
+
   def set_login_session(user)
     session[:user_id] = user.id
     session[:username] = user.username

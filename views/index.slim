@@ -1,5 +1,8 @@
-a href='/login' class='ui-btn ui-btn-inline ui-btn-b'
-  = I18n.t('user.login')
+- if logged?
+  h4 您已经登录！
+- else
+  a href='/login' class='ui-btn ui-btn-inline ui-btn-b'
+    = I18n.t('user.login')
 
-a href='/register' class='ui-btn ui-btn-inline ui-btn-b'
-  = I18n.t('user.register')
+  a href='/register' class='ui-btn ui-btn-inline ui-btn-b'
+    = I18n.t('user.register')
