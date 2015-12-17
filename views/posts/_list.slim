@@ -5,13 +5,10 @@ table
   tr
     th 标题
     th = I18n.t('post.body')
-    th 时间
+    th 日期
 
   - @posts.each do |post|
     tr
-      td
-        = post.title
-      td
-        = post.body
-      td
-        = post.created_at.strftime("%-m月%-d日 %H:%M")
+      td = post.title
+      td = post.body
+      td = post.created_at.strftime("%-m月%-d日")
