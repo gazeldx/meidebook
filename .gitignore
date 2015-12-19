@@ -4,3 +4,4 @@
 pg.rb
 nohup.out
 /db/*.db
+/node_modules

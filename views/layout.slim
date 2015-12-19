@@ -1,26 +1,16 @@
 doctype html
-html
+html lang="en"
   head
+    meta charset="UTF-8"
+    meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"
     title = @title.present? ? "#{@title} | #{I18n.t('site.title')}" : I18n.t('site.title')
-    meta name='viewport' content='width=device-width, initial-scale=1'
-    link rel='stylesheet' href='/stylesheets/jquery.mobile-1.4.5.min.css'
+    link rel='stylesheet' href='/stylesheets/weui.min.css'
+    link rel='stylesheet' href='/stylesheets/example.css'
     script src='/javascripts/jquery-1.11.1.min.js'
-    script src='/javascripts/jquery.mobile-1.4.5.min.js'
 
-  body
-    div data-role='page' data-url=@data_url
-      div data-role='header'
-        h1 = I18n.t('site.title')
-
-      div role='main' class='ui-content'
+  body ontouchstart=""
+    div class="container js_container"
+      .page
         == notice_info
         == error_info
         == yield
-
-        - if session[:user_id]
-          br
-          a href='/logout' class='ui-btn ui-btn-inline ui-btn-b'
-            = I18n.t('user.logout')
-
-      div data-role='footer'
-        h4 = I18n.t('site.footer')

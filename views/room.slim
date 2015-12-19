@@ -1,7 +1,11 @@
-h2 欢迎你，#{session[:nickname]}。你已进入自修室。
+.hd
+  h1.page_title #{session[:nickname]}自修中
 
-a href='/posts' class='ui-btn ui-btn-inline ui-btn-b'
-  = I18n.t('post.index')
+.bd.spacing
+  a href="/posts/new" class="weui_btn weui_btn_primary"
+    = I18n.t('post.new')
 
-a href='/posts/new' class='ui-btn ui-btn-inline ui-btn-b'
-  = I18n.t('post.new')
+  /a href='/posts' class='ui-btn ui-btn-inline ui-btn-b'
+    = I18n.t('post.index')
+
+  == logout_button

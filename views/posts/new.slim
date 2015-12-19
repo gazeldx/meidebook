@@ -1,13 +1,22 @@
-h2 = I18n.t('post.new')
+.hd
+  h1.page_title
+    = I18n.t('post.new')
 
-form action='/post/create' method='post'
-  == errors_message
-  label for='title' 标题：
-  input type='text' name='title' id='title' value=flash[:title]
+.bd
+  form action='/post/create' method='post'
+    == errors_message
+    div class='weui_cells weui_cells_form'
+      .weui_cell
+        .weui_cell_hd
+          label.weui_label 标题
+        div class='weui_cell_bd weui_cell_primary'
+          input.weui_input type='text' name='title' value=flash[:title] placeholder='标题可以不填'
 
-  label for='body' 正文：
-  textarea cols='40' rows='8' name='body' id='body' class='ui-input-text ui-body-c ui-corner-all ui-shadow-inset' required='true'
-    = flash[:body]
+      .weui_cell
+        div class='weui_cell_bd weui_cell_primary'
+          textarea name='body' class='weui_textarea' placeholder='请输入正文' rows='3' required='true'
+            = flash[:body]
 
-  button type='submit' class='ui-btn ui-shadow'
-    | 提 交
+    .weui_btn_area
+      button type='submit' class='weui_btn weui_btn_primary' 确定
+

@@ -30,12 +30,10 @@ set :bind, '0.0.0.0' # 允许在非本机访问本服务
 enable :sessions
 
 get '/' do
-  @data_url = '/'
   slim :index
 end
 
 get '/register' do
-  @data_url = '/register'
   slim :register
 end
 
@@ -59,7 +57,6 @@ post '/user/create' do
 end
 
 get '/login' do
-  @data_url = '/login'
   slim :login
 end
 
@@ -88,7 +85,6 @@ get '/room' do
     flash[:notice] = I18n.t('user.not_login_yet')
     redirect '/login'
   else
-    @data_url = '/room'
     slim :room
   end
 end
@@ -101,13 +97,11 @@ get '/logout' do
 end
 
 get '/posts/new' do
-  @data_url = '/posts/new'
   slim '/posts/new'.to_sym
 end
 
 get '/posts' do
   @posts = Post.where(user_id: session[:user_id])
-  @data_url = '/posts'
   slim :'posts/index'
 end
 
@@ -134,6 +128,10 @@ helpers do
     Slim::Template.new("#{name}.slim", options).render(self, &block)
   end
 
+  def include_erb(name, options = {}, &block)
+    Slim::Template.new("#{name}.erb", options).render(self, &block)
+  end
+
   def current_user
     User.find(session[:user_id]) if session[:user_id].present?
   end
@@ -156,7 +154,7 @@ helpers do
   def notice_info
     result = ''
     if flash[:notice]
-      result = "<p style='color: green'>#{flash[:notice]}</p>"
+      result = "<div class='weui_toptips weui_primary js_tooltips' style='display:block!important;'>#{flash[:notice]}</div>"
       flash[:notice] = nil
     end
     result
@@ -165,7 +163,7 @@ helpers do
   def error_info
     result = ''
     if flash[:error]
-      result = "<p style='color: red'>#{flash[:error]}</p>"
+      result = "<div class='weui_toptips weui_warn js_tooltips' style='display:block!important;'>#{flash[:error]}</div>"
       flash[:error] = nil
     end
     result
@@ -185,6 +183,10 @@ helpers do
 
   def flash_errors(model)
     flash[:errors] = model.errors.merge(model_name: model.class.to_s.downcase)
+  end
+
+  def logout_button
+    "<a href='/logout' class='weui_btn weui_btn_plain_default'>#{I18n.t('user.logout')}</a>" if session[:user_id]
   end
 end
 

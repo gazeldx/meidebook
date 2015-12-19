@@ -1,8 +1,12 @@
-- if logged?
-  h4 您已经登录！
-- else
-  a href='/login' class='ui-btn ui-btn-inline ui-btn-b'
-    = I18n.t('user.login')
+.hd
+  h1.page_title = I18n.t('site.title')
+  p.page_desc 和朋友一起学阳明心学
 
-  a href='/register' class='ui-btn ui-btn-inline ui-btn-b'
-    = I18n.t('user.register')
+.bd.spacing
+  - if logged?
+    h4 您已经登录！
+  - else
+    a href="/register" class="weui_btn weui_btn_primary"
+      = I18n.t('user.register')
+    a href="/login" class="weui_btn weui_btn_warn"
+      = I18n.t('user.login')

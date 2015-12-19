@@ -1,26 +1,33 @@
 - if logged?
-  h4 您已经登录！
+  | 您已经登录！
 - else
-  h2 用户登录
+  .hd
+    h1.page_title 用户登录
 
-  form action='/do_login' method='post'
-    label for='username' 用户名：
-    input type='text' name='username' id='username' value=flash[:username] data-clear-btn='true' required='true'
+  .bd
+    form action='/do_login' method='post'
+      /.weui_cells_title 表单
+      div class='weui_cells weui_cells_form'
+        .weui_cell
+          .weui_cell_hd
+            label.weui_label 用户名
+          div class='weui_cell_bd weui_cell_primary'
+            input.weui_input type='text' name='username' value=flash[:username] required='true' placeholder='请输入用户名'
 
-    label for='password' 密码：
-    input type='password' name='password' id='password' data-clear-btn='true' autocomplete='off' required='true'
+        .weui_cell
+          .weui_cell_hd
+            label.weui_label 密码
+          div class='weui_cell_bd weui_cell_primary'
+            input.weui_input type='password' name='password' required='true' placeholder='请输入密码' autocomplete='off'
 
-    /label for='password_hint'
-      a href='#' onclick='showPasswordHint()'
-        | 密码提示
+          /label for='password_hint'
+            a href='#' onclick='showPasswordHint()'
+              | 密码提示
+            javascript:
+              function showPasswordHint() {
+                //if ($('#username').) { }
+              }
 
-    button type='submit' class='ui-btn ui-shadow'
-      | 登 录
+      .weui_btn_area
+        button type='submit' class='weui_btn weui_btn_primary' 确定
 
-    a href='/register' class='ui-btn ui-btn-inline ui-btn-b'
-      = I18n.t('user.register')
-
-  javascript:
-    function showPasswordHint() {
-      //if ($('#username').) { }
-    }
