@@ -1,11 +1,18 @@
 .hd
   h1.page_title #{session[:nickname]}自修中
 
-.bd.spacing
-  a href="/posts/new" class="weui_btn weui_btn_primary"
-    = I18n.t('post.new')
+.bd
+  .weui_btn_area
+    a href="/posts/new" class="weui_btn weui_btn_primary"
+      = I18n.t('post.new')
 
-  /a href='/posts' class='ui-btn ui-btn-inline ui-btn-b'
-    = I18n.t('post.index')
+  .weui_cells_title 过往心得
+  div class="weui_cells weui_cells_access"
+    - @posts.each do |post|
+      a class="weui_cell" href="/posts/#{post.id}"
+        div class="weui_cell_bd weui_cell_primary"
+          p = post.body[0..30]
+        .weui_cell_ft = post.created_at.strftime("%-m月%-d日")
 
-  == logout_button
+  .weui_btn_area
+    == logout_button

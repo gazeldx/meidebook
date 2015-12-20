@@ -25,4 +25,5 @@ zh:
     min_length: 太短。至少要%{min}个字符！
     max_length: 太长。至多允许%{max}个字符！
     presence: 是必填项！
+    unique: 已经被使用，请更换！
 

@@ -21,7 +21,8 @@ Dir['./models/*.rb'].each { |file| require file }
 Sequel::Plugins::ValidationHelpers::DEFAULT_OPTIONS.merge!(
   max_length: { message: lambda { |max| I18n.t('errors.max_length', max: max) }, nil_message: lambda { I18n.t('errors.presence') } },
   min_length: { message: lambda { |min| I18n.t('errors.min_length', min: min) } },
-  presence: { message: lambda { I18n.t('errors.presence') } }
+  presence: { message: lambda { I18n.t('errors.presence') } },
+  unique: { message: lambda { I18n.t('errors.unique') } }
 )
 
 set :bind, '0.0.0.0' # 允许在非本机访问本服务
@@ -85,6 +86,7 @@ get '/room' do
     flash[:notice] = I18n.t('user.not_login_yet')
     redirect '/login'
   else
+    @posts = Post.where(user_id: session[:user_id]).reverse_order(:id)
     slim :room
   end
 end
@@ -100,27 +102,34 @@ get '/posts/new' do
   slim '/posts/new'.to_sym
 end
 
-get '/posts' do
-  @posts = Post.where(user_id: session[:user_id])
-  slim :'posts/index'
+get '/posts/:id' do
+  @post = Post.find(id: params[:id], user_id: session[:user_id])
+  if @post
+    slim :'/posts/show'
+  else
+    status 404
+  end
 end
 
 post '/post/create' do
-  post = Post.new(title: params[:title],
-                  body: params[:body],
+  post = Post.new(body: params[:body],
                   user_id: session[:user_id],
                   created_at: Time.now,
                   updated_at: Time.now)
 
   if post.valid?
     post.save
-    redirect '/posts'
+    redirect '/room'
   else
-    flash[:title] = params[:title]
     flash[:body] = params[:body]
     flash_errors(post)
     redirect '/posts/new'
   end
+end
+
+not_found do
+  status 404
+  slim :'404'
 end
 
 helpers do

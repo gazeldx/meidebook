@@ -6,7 +6,7 @@
   form action='/post/create' method='post'
     == errors_message
     div class='weui_cells weui_cells_form'
-      .weui_cell
+      /.weui_cell
         .weui_cell_hd
           label.weui_label 标题
         div class='weui_cell_bd weui_cell_primary'
@@ -14,7 +14,7 @@
 
       .weui_cell
         div class='weui_cell_bd weui_cell_primary'
-          textarea name='body' class='weui_textarea' placeholder='请输入正文' rows='3' required='true'
+          textarea name='body' class='weui_textarea' placeholder='请撰写心学心得' rows='3' required='true'
             = flash[:body]
 
     .weui_btn_area
