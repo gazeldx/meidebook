@@ -16,7 +16,7 @@ configure do
   I18n.config.default_locale = :zh
 end
 
-Sequel.sqlite("./db/xinxue_#{development? ? 'development' : 'production'}.db")
+Sequel.sqlite("./db/book_#{development? ? 'development' : 'production'}.db")
 Dir['./models/*.rb'].each { |file| require file }
 Sequel::Plugins::ValidationHelpers::DEFAULT_OPTIONS.merge!(
   max_length: { message: lambda { |max| I18n.t('errors.max_length', max: max) }, nil_message: lambda { I18n.t('errors.presence') } },

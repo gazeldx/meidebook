@@ -1,3 +1,3 @@
-require './xinxue'
+require './book'
 
 run Sinatra::Application
