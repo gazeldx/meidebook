@@ -32,6 +32,18 @@ zh:
     body: 正文
     body_placeholder: 请撰写读书心得
 
+  book:
+    search: 搜索图书
+    code: 图书编号
+    code_placeholder: 请输入图书编号
+    code_valid_combine_format: 请用字母、数字、下划线和中划线组合。
+    head_page_photo: 扉页照片
+    create_button: 登记本图书
+
+  comment:
+    body: 回复
+    photo: 照片
+
   errors:
     min_length: 太短。至少要%{min}个字符！
     max_length: 太长。至多允许%{max}个字符！

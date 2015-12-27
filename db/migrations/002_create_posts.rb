@@ -1,3 +1,4 @@
+# 读书心得
 Sequel.migration do
   change do
     create_table(:posts) do

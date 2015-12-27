@@ -1,0 +1,17 @@
+.hd
+  h1.page_title
+    | 编号为“#{params[:book_code]}”的图书尚未登记，您可以登记它！
+
+.bd
+  form action='/book/create' method='post' enctype='multipart/form-data'
+    == errors_message
+    .weui_cells_title 请拍照上传带“捐书人手写文字”的书页
+    div class='weui_cells weui_cells_form'
+      .weui_cell
+        .weui_cell_hd
+          = I18n.t('book.head_page_photo')
+        div class='weui_cell_bd weui_cell_primary'
+          input.weui_input type='file' name='photo' required='true'
+
+    .weui_btn_area
+      button type='submit' class='weui_btn weui_btn_primary' = I18n.t('book.create_button')

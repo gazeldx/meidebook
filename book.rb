@@ -127,6 +127,16 @@ post '/post/create' do
   end
 end
 
+get '/:book_code' do
+  @book = Book.find(code: params[:book_code])
+
+  if @book
+    slim :'/books/show'
+  else
+    slim :'/books/new'
+  end
+end
+
 not_found do
   status 404
   slim :'404'

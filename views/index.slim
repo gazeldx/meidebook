@@ -2,11 +2,38 @@
   h1.page_title = I18n.t('site.title')
   p.page_desc = I18n.t('site.desc')
 
+.bd
+  div class='weui_cells weui_cells_form'
+    .weui_cell
+      .weui_cell_hd
+        = I18n.t('book.code')
+      div class='weui_cell_bd weui_cell_primary'
+        input.weui_input type='text' name='book_code' id='book_code' required='true' placeholder=I18n.t('book.code_placeholder')
+
+  .weui_btn_area
+    a href='#' id='search_book_link' class='weui_btn weui_btn_primary' onclick='searchBook();'
+      = I18n.t('book.search')
+
+  div class='weui_toast' style='display: none;'
+    i class='weui_icon_toast'
+    p class='weui_toast_content'
+      = I18n.t('book.code_placeholder')
+
 .bd.spacing
+  br
   - if logged?
     h4 = I18n.t('user.have_login')
   - else
-    a href="/register" class="weui_btn weui_btn_primary"
+    a href='/register' class='weui_btn weui_btn_plain_primary'
       = I18n.t('user.register')
-    a href="/login" class="weui_btn weui_btn_warn"
+    a href='/login' class='weui_btn weui_btn_plain_default'
       = I18n.t('user.login')
+
+javascript:
+  function searchBook() {
+    if ($('#book_code').val() == '') {
+      $('.weui_toast').show()
+    } else {
+      $('#search_book_link').attr('href', '/' + $('#book_code').val())
+    }
+  }
