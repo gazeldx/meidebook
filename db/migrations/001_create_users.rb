@@ -7,6 +7,8 @@ Sequel.migration do
       String :password, null: false
       String :password_hint
       String :email
+      index :username
+      index :email
     end
   end
 end

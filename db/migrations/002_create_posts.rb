@@ -7,6 +7,7 @@ Sequel.migration do
       String :title
       Time :created_at
       Time :updated_at
+      index :user_id
     end
   end
 end
