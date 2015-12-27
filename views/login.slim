@@ -1,24 +1,23 @@
 - if logged?
-  | 您已经登录！
+  = I18n.t('user.have_login')
 - else
   .hd
-    h1.page_title 用户登录
+    h1.page_title = I18n.t('user.login_title')
 
   .bd
     form action='/do_login' method='post'
-      /.weui_cells_title 表单
       div class='weui_cells weui_cells_form'
         .weui_cell
           .weui_cell_hd
-            label.weui_label 用户名
+            label.weui_label = I18n.t('user.username')
           div class='weui_cell_bd weui_cell_primary'
-            input.weui_input type='text' name='username' value=flash[:username] required='true' placeholder='请输入用户名'
+            input.weui_input type='text' name='username' value=flash[:username] required='true' placeholder=I18n.t('user.username_placeholder')
 
         .weui_cell
           .weui_cell_hd
-            label.weui_label 密码
+            label.weui_label = I18n.t('user.password')
           div class='weui_cell_bd weui_cell_primary'
-            input.weui_input type='password' name='password' required='true' placeholder='请输入密码' autocomplete='off'
+            input.weui_input type='password' name='password' required='true' placeholder=I18n.t('user.password_placeholder') autocomplete='off'
 
           /label for='password_hint'
             a href='#' onclick='showPasswordHint()'
@@ -29,5 +28,5 @@
               }
 
       .weui_btn_area
-        button type='submit' class='weui_btn weui_btn_primary' 确定
+        button type='submit' class='weui_btn weui_btn_primary' = I18n.t(:ok)
 

@@ -1,10 +1,10 @@
 .hd
   h1.page_title = I18n.t('site.title')
-  p.page_desc 和朋友一起学阳明心学
+  p.page_desc = I18n.t('site.desc')
 
 .bd.spacing
   - if logged?
-    h4 您已经登录！
+    h4 = I18n.t('user.have_login')
   - else
     a href="/register" class="weui_btn weui_btn_primary"
       = I18n.t('user.register')

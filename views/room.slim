@@ -6,7 +6,7 @@
     a href="/posts/new" class="weui_btn weui_btn_primary"
       = I18n.t('post.new')
 
-  .weui_cells_title 过往心得
+  .weui_cells_title = I18n.t('post.index')
   div class="weui_cells weui_cells_access"
     - @posts.each do |post|
       a class="weui_cell" href="/posts/#{post.id}"

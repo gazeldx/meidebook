@@ -1,7 +1,7 @@
 ## 美德公益传书游戏
 游戏详情见：[游戏玩法](http://www.jianshu.com/p/5514fe76cff4)
 
-## 开发本项目的全过程笔记
+## 安装本项目
 采用[Sinatra](www.sinatrarb.com)架构搭建本项目，数据库操作用[Sequel](http://sequel.jeremyevans.net/)。
 
 ```bash

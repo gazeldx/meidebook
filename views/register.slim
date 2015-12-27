@@ -1,8 +1,8 @@
 - if logged?
-  | 您已经登录！
+  = I18n.t('user.have_login')
 - else
   .hd
-    h1.page_title 用户注册
+    h1.page_title = I18n.t('user.register_title')
 
   .bd
     form action='/user/create' method='post'
@@ -10,21 +10,21 @@
       div class='weui_cells weui_cells_form'
         .weui_cell
           .weui_cell_hd
-            label.weui_label for='username' 用户名
+            label.weui_label for='username' = I18n.t('user.username')
           div class='weui_cell_bd weui_cell_primary'
-            input.weui_input type='text' name='username' id='username' value=flash[:username] required='true' placeholder='请输入用户名'
+            input.weui_input type='text' name='username' id='username' value=flash[:username] required='true' placeholder=I18n.t('user.username_placeholder')
 
         .weui_cell
           .weui_cell_hd
-            label.weui_label for='password' 密码
+            label.weui_label for='password' = I18n.t('user.password')
           div class='weui_cell_bd weui_cell_primary'
-            input.weui_input type='password' name='password' id='password' required='true' placeholder='请输入密码' autocomplete='off'
+            input.weui_input type='password' name='password' id='password' required='true' placeholder=I18n.t('user.password_placeholder') autocomplete='off'
 
         .weui_cell
           .weui_cell_hd
-            | 密码提示
+            = I18n.t('user.password_hint')
           div class='weui_cell_bd weui_cell_primary'
-            input.weui_input type='text' name='password_hint' value=flash[:password_hint] required='true' placeholder='在您遗忘密码时，给自己一个提示'
+            input.weui_input type='text' name='password_hint' value=flash[:password_hint] required='true' placeholder=I18n.t('user.password_hint_placeholder')
 
       .weui_btn_area
-        button type='submit' class='weui_btn weui_btn_primary' 注册
+        button type='submit' class='weui_btn weui_btn_primary' = I18n.t('user.register')

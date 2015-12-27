@@ -6,17 +6,11 @@
   form action='/post/create' method='post'
     == errors_message
     div class='weui_cells weui_cells_form'
-      /.weui_cell
-        .weui_cell_hd
-          label.weui_label 标题
-        div class='weui_cell_bd weui_cell_primary'
-          input.weui_input type='text' name='title' value=flash[:title] placeholder='标题可以不填'
-
       .weui_cell
         div class='weui_cell_bd weui_cell_primary'
-          textarea name='body' class='weui_textarea' placeholder='请撰写心学心得' rows='3' required='true'
+          textarea name='body' class='weui_textarea' placeholder=I18n.t('post.body_placeholder') rows='3' required='true'
             = flash[:body]
 
     .weui_btn_area
-      button type='submit' class='weui_btn weui_btn_primary' 确定
+      button type='submit' class='weui_btn weui_btn_primary' = I18n.t(:ok)
 
