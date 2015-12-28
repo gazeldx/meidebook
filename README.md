@@ -11,7 +11,8 @@ $ sequel -m db/migrations sqlite://db/book_development.db -E # 创建数据库
 $ puma # 启动项目，这时可以访问 http://localhost:9292/ 了
 ```
 
-
+## TODOs
+在文档中补充: 请将活动规则写在扉页
 
 
 

@@ -7,6 +7,7 @@ require 'sequel'
 require 'json'
 require 'slim'
 require 'active_support/all'
+# require 'carrierwave/sequel'
 
 configure do
   I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)

@@ -1,6 +1,9 @@
 GEM
   remote: https://ruby.taobao.org/
   specs:
+    activemodel (4.2.4)
+      activesupport (= 4.2.4)
+      builder (~> 3.1)
     activesupport (4.2.4)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
@@ -8,8 +11,21 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     backports (3.6.7)
+    builder (3.2.2)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
+    carrierwave-sequel (0.1.1)
+      carrierwave
+      sequel
     i18n (0.7.0)
     json (1.8.3)
+    mime-types (3.0)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2015.1120)
+    mini_magick (4.3.6)
     minitest (5.8.0)
     multi_json (1.11.2)
     puma (2.15.3)
@@ -49,6 +65,9 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport
+  carrierwave
+  carrierwave-sequel
+  mini_magick
   puma
   sequel
   sinatra
@@ -58,4 +77,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
