@@ -7,7 +7,8 @@ require 'sequel'
 require 'json'
 require 'slim'
 require 'active_support/all'
-# require 'carrierwave/sequel'
+require 'carrierwave'
+require 'carrierwave/sequel'
 
 configure do
   I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
@@ -16,6 +17,8 @@ configure do
   I18n.config.available_locales = [:en, :zh]
   I18n.config.default_locale = :zh
 end
+
+Dir['./uploaders/*.rb'].each { |file| require file }
 
 Sequel.sqlite("./db/book_#{development? ? 'development' : 'production'}.db")
 Dir['./models/*.rb'].each { |file| require file }
@@ -135,6 +138,28 @@ get '/:book_code' do
     slim :'/books/show'
   else
     slim :'/books/new'
+  end
+end
+
+post '/book/create' do
+  book = Book.new(code: params[:book_code],
+                  created_at: Time.now,
+                  updated_at: Time.now)
+
+  if book.valid?
+    book.save
+
+    comment = Comment.new(book_id: book.id,
+                          photo: params[:photo],
+                          created_at: Time.now,
+                          updated_at: Time.now)
+    comment.save
+
+    redirect "/#{params[:book_code]}"
+  else
+    flash[:body] = params[:body]
+    flash_errors(book)
+    redirect "/#{params[:book_code]}"
   end
 end
 

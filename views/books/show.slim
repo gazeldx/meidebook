@@ -1,3 +1,5 @@
 .hd
   h1.page_title
-    = "#{@book.created_at.strftime('%-m月%-d日')}"
+    = "公益图书“#{@book.code}”"
+  p.page_desc
+    = "创建于#{@book.created_at.strftime('%-m月%-d日')}"
