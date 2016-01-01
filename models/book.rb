@@ -1,4 +1,6 @@
 class Book < Sequel::Model
+  one_to_many :comments
+
   plugin :validation_helpers
 
   def validate

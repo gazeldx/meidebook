@@ -1,7 +1,9 @@
 class Comment < Sequel::Model
-  plugin :validation_helpers
+  many_to_one :book
 
   mount_uploader :photo, PhotoUploader
+
+  plugin :validation_helpers
 
   def validate
     super

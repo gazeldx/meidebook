@@ -5,6 +5,10 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   before :cache, :valid_size?
 
+  def store_dir
+    "#{Sinatra::Application.settings.root}/public/uploads/comments/#{model.id}"
+  end
+
   def valid_size?(file)
     raise CarrierWave::IntegrityError, I18n.translate('comment.photo_too_big') if file.size > 4500000
   end
@@ -22,5 +26,13 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   version :square do
     process :resize_to_fill => [115, 115]
+  end
+
+  def filename
+    begin
+      "photo#{File.extname(super).downcase}"
+    rescue
+      ''
+    end
   end
 end

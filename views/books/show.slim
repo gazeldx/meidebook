@@ -3,3 +3,12 @@
     = "公益图书“#{@book.code}”"
   p.page_desc
     = "创建于#{@book.created_at.strftime('%-m月%-d日')}"
+
+.bd
+  - @book.comments.each_with_index do |comment, i|
+    | 网友回复#{i + 1}（#{comment.created_at.strftime('%Y年%-m月%-d日 %H:%M:%S')}）：
+    br
+    - if comment.photo
+      img src=comment.photo
+    = comment.body if comment.body
+
