@@ -38,6 +38,10 @@ get '/' do
   slim :index
 end
 
+get '/about' do
+  slim :about
+end
+
 get '/register' do
   slim :register
 end
@@ -131,16 +135,6 @@ post '/post/create' do
   end
 end
 
-get '/:book_code' do
-  @book = Book.find(code: params[:book_code])
-
-  if @book
-    slim :'/books/show'
-  else
-    slim :'/books/new'
-  end
-end
-
 post '/book/create' do
   book = Book.new(code: params[:book_code],
                   created_at: Time.now,
@@ -160,6 +154,17 @@ post '/book/create' do
     flash[:body] = params[:body]
     flash_errors(book)
     redirect "/#{params[:book_code]}"
+  end
+end
+
+# Notice: 本get始终放在最后
+get '/:book_code' do
+  @book = Book.find(code: params[:book_code])
+
+  if @book
+    slim :'/books/show'
+  else
+    slim :'/books/new'
   end
 end
 

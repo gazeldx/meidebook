@@ -1,6 +1,10 @@
 .hd
   h1.page_title = I18n.t('site.title')
-  p.page_desc = I18n.t('site.desc')
+  p.page_desc
+    = I18n.t('site.desc')
+    | （
+    a href='/about' 活动详情
+    | ）
 
 .bd
   div class='weui_cells weui_cells_form'
