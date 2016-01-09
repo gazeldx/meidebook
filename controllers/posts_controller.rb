@@ -1,8 +1,4 @@
 class PostsController < ApplicationController
-  get '/new' do
-    slim '/posts/new'.to_sym
-  end
-
   get '/:id' do
     @post = Post.find(id: params[:id], user_id: session[:user_id])
     if @post
@@ -10,6 +6,10 @@ class PostsController < ApplicationController
     else
       status 404
     end
+  end
+
+  get '/new' do
+    slim '/posts/new'.to_sym
   end
 
   post '/' do

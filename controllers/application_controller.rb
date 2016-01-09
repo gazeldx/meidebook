@@ -22,8 +22,6 @@ class ApplicationController < Sinatra::Base
     I18n.config.default_locale = :zh
   end
 
-  # Dir["#{Sinatra::Application.settings.root}/uploaders/*.rb"].each { |file| require file }
-
   Sequel.sqlite("#{Sinatra::Application.settings.root}/db/book_#{development? ? 'development' : 'production'}.db")
   Dir["#{Sinatra::Application.settings.root}/models/*.rb"].each { |file| require file }
   Sequel::Plugins::ValidationHelpers::DEFAULT_OPTIONS.merge!(
