@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     end
   end
 
-  post 'create' do
+  post '/' do
     post = Post.new(body: params[:body],
                     user_id: session[:user_id],
                     created_at: Time.now,

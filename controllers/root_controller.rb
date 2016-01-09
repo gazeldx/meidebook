@@ -1,4 +1,4 @@
-class LoginController < ApplicationController
+class RootController < ApplicationController
   get '/' do
     slim :index
   end
@@ -40,5 +40,26 @@ class LoginController < ApplicationController
 
     flash[:notice] = I18n.t('user.logout_success')
     redirect '/'
+  end
+
+  get '/room' do
+    if session[:user_id].blank?
+      flash[:notice] = I18n.t('user.not_login_yet')
+      redirect '/login'
+    else
+      @posts = Post.where(user_id: session[:user_id]).reverse_order(:id)
+      slim :room
+    end
+  end
+
+  # Notice: 本get始终放在最后
+  get '/:book_code' do
+    @book = Book.find(code: params[:book_code])
+
+    if @book
+      slim :'/books/show'
+    else
+      slim :'/books/new'
+    end
   end
 end

@@ -1,17 +1,21 @@
-require './book'
-#
-# run Sinatra::Application
-
+require 'sinatra'
 require 'sinatra/base'
+require 'sinatra/flash'
+require 'sinatra/reloader' if development? # 用于在测试环境时,不必重启就可以看到代码改动的结果
+require 'sequel'
+require 'slim'
+require 'carrierwave'
+require 'carrierwave/sequel'
+require 'active_support/all'
+require 'json'
+require 'i18n'
+require 'i18n/backend/fallbacks'
 
-# pull in the helpers and controllers
-# Dir.glob('./{helpers,controllers}/*.rb').each { |file| require file }
-# Dir.glob("#{Sinatra::Application.settings.root}/{helpers,controllers}/*.rb").each { |file| require file }
-require './helpers/application_helper'
-require './controllers/application_controller'
-require './controllers/login_controller'
-require './controllers/posts_controller'
-# map the controllers to routes
-# map('/example') { run ExampleController }
-map('/') { run LoginController }
+Dir.glob("#{Sinatra::Application.settings.root}/{helpers,uploaders,controllers}/*.rb").each do |file|
+  require file
+end
+
+map('/') { run RootController }
+map('/books') { run BooksController }
 map('/posts') { run PostsController }
+map('/users') { run UsersController }

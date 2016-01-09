@@ -27,7 +27,7 @@ module ApplicationHelper
   end
 
   def notice_info
-    require 'sinatra/flash'
+    # require 'sinatra/flash'
     result = ''
     if flash[:notice]
       result = "<div class='weui_toptips weui_primary js_tooltips' style='display:block!important;'>#{flash[:notice]}</div>"
