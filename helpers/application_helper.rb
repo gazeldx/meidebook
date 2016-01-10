@@ -26,11 +26,15 @@ module ApplicationHelper
     session[:user_id], session[:username], session[:nickname], session[:email] = nil, nil, nil, nil
   end
 
+  def add_received_books(book_code)
+    session[:received_books] = session[:received_books].to_s << "#{book_code} "
+  end
+
   def notice_info
     # require 'sinatra/flash'
     result = ''
     if flash[:notice]
-      result = "<div class='weui_toptips weui_primary js_tooltips' style='display:block!important;'>#{flash[:notice]}</div>"
+      result = "<div class='weui_toptips weui_primary js_tooltips' style='color: red; display:block!important;'>#{flash[:notice]}</div>"
       flash[:notice] = nil
     end
     result
@@ -39,7 +43,7 @@ module ApplicationHelper
   def error_info
     result = ''
     if flash[:error]
-      result = "<div class='weui_toptips weui_warn js_tooltips' style='display:block!important;'>#{flash[:error]}</div>"
+      result = "<div class='weui_toptips weui_warn js_tooltips' style='color: red; display:block!important;'>#{flash[:error]}</div>"
       flash[:error] = nil
     end
     result

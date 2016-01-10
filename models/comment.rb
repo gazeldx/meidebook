@@ -8,5 +8,6 @@ class Comment < Sequel::Model
   def validate
     super
     validates_presence :book_id
+    errors.add(:photo, I18n.t('comment.extension_invalid')) if body.blank? && photo.blank?
   end
 end

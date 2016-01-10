@@ -4,19 +4,24 @@ class BooksController < ApplicationController
                     created_at: Time.now,
                     updated_at: Time.now)
 
-    if book.valid?
+    comment = Comment.new(book_id: 1,
+                          photo: params[:photo],
+                          created_at: Time.now,
+                          updated_at: Time.now)
+
+    if book.valid? && comment.valid?
       book.save
 
-      comment = Comment.new(book_id: book.id,
-                            photo: params[:photo],
-                            created_at: Time.now,
-                            updated_at: Time.now)
+      comment.book_id = book.id
       comment.save
 
+      flash[:notice] = "您的图书已经登记，等侍审核中。"
+      add_received_books(params[:book_code])
       redirect "/#{params[:book_code]}"
     else
       flash[:body] = params[:body]
       flash_errors(book)
+      flash_errors(comment)
       redirect "/#{params[:book_code]}"
     end
   end

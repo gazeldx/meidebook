@@ -1,0 +1,30 @@
+.hd
+  h1.page_title
+    | 这是一本公益图书
+  p.page_desc
+    | 如果本书曾经传到您手中，请输入验证码；
+    br
+    | 否则请您不要输入验证码（我们希望活动参与者的隐私能得到保护）。
+    br
+    | 请点击“
+    a href='/about' 美德公益传书活动
+    | ”——把好书送人，请他读完后传给下个人。
+
+.bd
+  form action='/submit_captcha' method='post'
+    == errors_message
+
+    input type='hidden' name='book_code' value=params[:book_code]
+
+    div class='weui_cells weui_cells_form'
+      .weui_cell
+        .weui_cell_hd
+          label.weui_label for='captcha' = I18n.t('captcha')
+        div class='weui_cell_bd weui_cell_primary'
+          input.weui_input type='text' name='captcha' id='captcha' value='' required='true' placeholder=I18n.t('captcha_placeholder')
+        .weui_cell_ft
+          img style="-webkit-user-select: none" src="/captcha"
+
+    .weui_btn_area
+      button type='submit' class='weui_btn weui_btn_primary' = I18n.t(:ok)
+

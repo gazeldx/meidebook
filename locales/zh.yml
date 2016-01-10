@@ -8,6 +8,10 @@ zh:
   valid_combine_format: 请用字母、数字和下划线组合。
   page_not_found: 您访问的页面不存在！
 
+  captcha: 验证码
+  captcha_placeholder: 如果本书曾经传到您手中，请输入验证码（不区分大小写）
+  captcha_not_match: 验证码错误！如果本书曾经传到您手中，请重新输入验证码！
+
   user:
     username: 用户名
     password: 密码
@@ -45,6 +49,7 @@ zh:
     body: 回复
     photo: 照片
     photo_too_big: 照片太大了！
+    extension_invalid: 请上传“png、jpg或gif”格式的！
 
   errors:
     min_length: 太短。至少要%{min}个字符！

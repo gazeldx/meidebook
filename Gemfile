@@ -11,6 +11,7 @@ gem 'activesupport'
 gem 'carrierwave'
 gem 'carrierwave-sequel', require: 'carrierwave/sequel'
 gem 'mini_magick'
+gem 'subexec'
 
 group :development do
   gem 'sinatra-reloader'

@@ -52,12 +52,32 @@ class RootController < ApplicationController
     end
   end
 
+  get '/captcha' do
+    content_type :png
+    session[:captcha] = Captcha.random_text
+    Captcha.create(session[:captcha])
+  end
+
+  post '/submit_captcha' do
+    if params[:captcha].downcase == session[:captcha].downcase
+      add_received_books(params[:book_code])
+    else
+      flash[:error] = I18n.t(:captcha_not_match)
+    end
+
+    redirect "/#{params[:book_code]}"
+  end
+
   # Notice: 本get始终放在最后
   get '/:book_code' do
     @book = Book.find(code: params[:book_code])
 
     if @book
-      slim :'/books/show'
+      if session[:received_books].to_s.split(' ').include?(params[:book_code])
+        slim :'/books/show'
+      else
+        slim :'/books/show_captcha'
+      end
     else
       slim :'/books/new'
     end
