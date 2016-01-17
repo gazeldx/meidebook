@@ -17,5 +17,6 @@ end
 
 map('/') { run RootController }
 map('/books') { run BooksController }
+map('/comments') { run CommentsController }
 map('/posts') { run PostsController }
 map('/users') { run UsersController }

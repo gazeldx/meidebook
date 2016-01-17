@@ -4,6 +4,7 @@ Sequel.migration do
     create_table(:comments) do
       primary_key :id
       Integer :book_id
+      Integer :user_id
       String :body
       String :photo
       Time :created_at

@@ -17,12 +17,12 @@ class BooksController < ApplicationController
 
       flash[:notice] = "您的图书已经登记，等侍审核中。"
       add_received_books(params[:book_code])
-      redirect "/#{params[:book_code]}"
     else
       flash[:body] = params[:body]
       flash_errors(book)
       flash_errors(comment)
-      redirect "/#{params[:book_code]}"
     end
+
+    redirect "/#{params[:book_code]}"
   end
 end

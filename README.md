@@ -12,7 +12,7 @@ $ puma # 启动项目，这时可以访问 http://localhost:9292/ 了
 ```
 
 ## TODOs
-* 为每个图书加入一个验证码(防止搜索Engine等)(用回答问题的方式实现)
-
+* bug: 验证码错误的时候提示的红色被掩盖了
+* perfect: comments页面的内容
 
 

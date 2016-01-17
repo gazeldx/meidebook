@@ -6,8 +6,23 @@
 
 .bd
   - @book.comments.each_with_index do |comment, i|
-    | 网友回复#{i + 1}（#{comment.created_at.strftime('%Y年%-m月%-d日 %H:%M:%S')}）：
+    | 回复#{i + 1}（#{comment.created_at.strftime('%Y年%-m月%-d日 %H:%M:%S')}）：
     br
     - if comment.photo
       img src=comment.photo
     = comment.body if comment.body
+    br
+    br
+
+  form action='/comments' method='post'
+    == errors_message
+    input type='hidden' name='book_code' value=params[:book_code]
+
+    div class='weui_cells weui_cells_form'
+      .weui_cell
+        div class='weui_cell_bd weui_cell_primary'
+          textarea name='body' class='weui_textarea' placeholder=I18n.t('comment.body_placeholder') rows='3' required='true'
+            = flash[:body]
+
+    .weui_btn_area
+      button type='submit' class='weui_btn weui_btn_primary' = I18n.t('comment.submit')

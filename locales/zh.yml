@@ -47,9 +47,11 @@ zh:
 
   comment:
     body: 回复
+    body_placeholder: 请输入回复内容
     photo: 照片
     photo_too_big: 照片太大了！
     extension_invalid: 请上传“png、jpg或gif”格式的！
+    submit: 发表回复
 
   errors:
     min_length: 太短。至少要%{min}个字符！
