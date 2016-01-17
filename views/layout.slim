@@ -1,15 +1,15 @@
 doctype html
-html lang="en"
+html lang='en'
   head
-    meta charset="UTF-8"
-    meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"
+    meta charset='UTF-8'
+    meta name='viewport' content='width=device-width,initial-scale=1,user-scalable=0'
     title = @title.present? ? "#{@title} | #{I18n.t('site.title')}" : I18n.t('site.title')
     link rel='stylesheet' href='/stylesheets/weui.min.css'
     link rel='stylesheet' href='/stylesheets/example.css'
     script src='/javascripts/jquery-1.11.1.min.js'
 
-  body ontouchstart=""
-    div class="container js_container"
+  body ontouchstart=''
+    div class='container js_container'
       .page
         == notice_info
         == error_info

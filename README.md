@@ -12,7 +12,6 @@ $ puma # 启动项目，这时可以访问 http://localhost:9292/ 了
 ```
 
 ## TODOs
-* bug: 验证码错误的时候提示的红色被掩盖了
 * perfect: comments页面的内容
 
 

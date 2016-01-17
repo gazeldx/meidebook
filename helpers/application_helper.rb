@@ -43,7 +43,7 @@ module ApplicationHelper
   def error_info
     result = ''
     if flash[:error]
-      result = "<div class='weui_toptips weui_warn js_tooltips' style='color: red; display:block!important;'>#{flash[:error]}</div>"
+      result = "<div class='weui_toptips weui_warn js_tooltips' style='color: white; display:block!important;'>#{flash[:error]}</div>"
       flash[:error] = nil
     end
     result
