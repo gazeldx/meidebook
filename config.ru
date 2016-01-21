@@ -12,6 +12,7 @@ require 'i18n'
 require 'i18n/backend/fallbacks'
 
 Dir.glob("#{Sinatra::Application.settings.root}/{lib,helpers,uploaders,controllers}/*.rb").each do |file|
+  puts file.inspect
   require file
 end
 
