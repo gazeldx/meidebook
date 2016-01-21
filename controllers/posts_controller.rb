@@ -1,13 +1,4 @@
 class PostsController < ApplicationController
-  get '/:id' do
-    @post = Post.find(id: params[:id], user_id: session[:user_id])
-    if @post
-      slim :'/posts/show'
-    else
-      status 404
-    end
-  end
-
   get '/new' do
     slim '/posts/new'.to_sym
   end
@@ -25,6 +16,16 @@ class PostsController < ApplicationController
       flash[:body] = params[:body]
       flash_errors(post)
       redirect '/posts/new'
+    end
+  end
+
+  # Notice: 请将本方法放在最后，因为“/:id”是泛匹配
+  get '/:id' do
+    @post = Post.find(id: params[:id], user_id: session[:user_id])
+    if @post
+      slim :'/posts/show'
+    else
+      status 404
     end
   end
 end

@@ -11,15 +11,8 @@ require 'json'
 require 'i18n'
 require 'i18n/backend/fallbacks'
 
-Dir.glob("#{Sinatra::Application.settings.root}/{lib,helpers,uploaders}/*.rb").each do |file|
-  puts file.inspect
-  require file
-end
-
-Dir.glob("#{Sinatra::Application.settings.root}/{controllers}/*.rb").sort.each do |file|
-  puts file.inspect
-  require file
-end
+Dir.glob("#{Sinatra::Application.settings.root}/{lib,helpers,uploaders}/*.rb").each { |file| require file }
+Dir.glob("#{Sinatra::Application.settings.root}/{controllers}/*.rb").sort.each { |file| require file }
 
 map('/') { run RootController }
 map('/books') { run BooksController }
