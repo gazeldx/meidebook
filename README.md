@@ -1,8 +1,13 @@
 # 美德公益传书活动
 [活动详情](http://meidebook.com/about)
 
+# 功能展示
+包含“注册、登录、搜索图书、查看图书信息、评论图书、发表读书心得、上传图片、验证码等”功能。
+
+请访问[美德公益图书 - 首页](http://meidebook.com)体验相关功能。
+
 # 安装本项目
-采用[Sinatra](www.sinatrarb.com)架构搭建本项目，数据库操作用[Sequel](http://sequel.jeremyevans.net/)，数据库用[SQLite](http://sqlite.com/)。
+采用[Sinatra](www.sinatrarb.com)架构搭建本项目，数据库操作用[Sequel](http://sequel.jeremyevans.net/)，数据库用[SQLite](http://sqlite.com/)，界面用[WeUI](http://weui.github.io/weui/)。
 
 ## 安装Ruby
 ### 安装[rbenv](https://github.com/rbenv/rbenv) 
