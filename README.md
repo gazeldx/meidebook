@@ -4,7 +4,7 @@
 # 功能展示
   包含“注册、登录、搜索图书、查看图书信息、评论图书、发表读书心得、上传图片、验证码等”功能。
 
-  请访问[美德公益图书 - 首页](http://meidebook.com)体验相关功能。
+  请访问[美德公益图书 - 首页](http://meidebook.com)体验相关功能（更侧重手机访问体验）。
 
 # 安装本项目
   采用[Sinatra](www.sinatrarb.com)架构搭建本项目，数据库操作用[Sequel](http://sequel.jeremyevans.net/)，数据库用[SQLite](http://sqlite.com/)，界面用[WeUI](http://weui.github.io/weui/)。
