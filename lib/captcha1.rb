@@ -15,7 +15,7 @@ class Captcha
   end
 
   def self.valid_chars
-    [('A'..'Z'), ('0'..'9')].map { |i| i.to_a }.flatten - ['0', '1', 'l', 'o', 'O', 'I']
+    [('0'..'9')].map { |i| i.to_a }.flatten - ['0', '1', 'l', 'o', 'O', 'I']
   end
 
   def self.random_text

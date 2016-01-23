@@ -66,6 +66,6 @@ module ApplicationHelper
   end
 
   def logout_button
-    "<a href='/logout' class='weui_btn weui_btn_plain_default'>#{I18n.t('user.logout')}</a>" if session[:user_id]
+    "<a href='/logout' class='weui_btn weui_btn_mini weui_btn_default'>#{I18n.t('user.logout')}</a>" if logged?
   end
 end

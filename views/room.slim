@@ -3,16 +3,19 @@
 
 .bd
   .weui_btn_area
-    a href="/posts/new" class="weui_btn weui_btn_primary"
+    a href='/posts/new' class='weui_btn weui_btn_primary'
       = I18n.t('post.new')
 
   .weui_cells_title = I18n.t('post.index')
-  div class="weui_cells weui_cells_access"
+  div class='weui_cells weui_cells_access'
     - @posts.each do |post|
-      a class="weui_cell" href="/posts/#{post.id}"
-        div class="weui_cell_bd weui_cell_primary"
+      a class='weui_cell' href="/posts/#{post.id}"
+        div class='weui_cell_bd weui_cell_primary'
           p = post.body[0..30]
         .weui_cell_ft = post.created_at.strftime("%-m月%-d日")
 
   .weui_btn_area
+    a href='/' class='weui_btn weui_btn_mini weui_btn_default'
+      = I18n.t('site.homepage')
+    | &nbsp;&nbsp;
     == logout_button

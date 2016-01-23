@@ -26,7 +26,7 @@
 .bd.spacing
   br
   - if logged?
-    h4 = I18n.t('user.have_login')
+    == logout_button
   - else
     a href='/register' class='weui_btn weui_btn_plain_primary'
       = I18n.t('user.register')

@@ -59,13 +59,20 @@ class RootController < ApplicationController
   end
 
   post '/submit_captcha' do
-    if params[:captcha].downcase == session[:captcha].downcase
+    if params[:captcha].downcase == session[:captcha].to_s.downcase
       add_received_books(params[:book_code])
     else
       flash[:error] = I18n.t(:captcha_not_match)
     end
 
     redirect "/#{params[:book_code]}"
+  end
+
+  # Notice: 用于开发人员调试
+  get '/clear_received_books_session' do
+    session[:received_books] = nil
+    flash[:notice] = I18n.t(:operate_success)
+    redirect '/'
   end
 
   # Notice: 本get始终放在最后
