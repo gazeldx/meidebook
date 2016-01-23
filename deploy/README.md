@@ -28,4 +28,4 @@ $ killall -HUP nginx # 无缝重启Nginx（对于修改了Nginx配置的时候�
 或者 $ /etc/init.d/nginx restart（不建议使用）
 ```
 
-* 本人会不断完善[Wiki](https://github.com/gazeldx/meidebook/wiki)
+  其它使用帮助见[Wiki](https://github.com/gazeldx/meidebook/wiki)
