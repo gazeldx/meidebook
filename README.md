@@ -28,6 +28,9 @@ $ sequel -m db/migrations sqlite://db/book_development.db -E # 创建数据库
 $ puma # 启动项目，这时可以访问 http://localhost:9292/ 了
 ```
 
+## 代码说明
+[./config.ru](./config.ru)是第一个被加载的文件，[./controllers/application_controller.rb](./controllers/application_controller.rb)是一个很重要的文件。
+
 ## 安装Nginx并运行程序在80端口
   详见[./deploy/README.md](./deploy/README.md)
 

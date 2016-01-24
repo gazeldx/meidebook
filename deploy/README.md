@@ -28,4 +28,11 @@ $ killall -HUP nginx # 无缝重启Nginx（对于修改了Nginx配置的时候�
 或者 $ /etc/init.d/nginx restart（不建议使用）
 ```
 
+## 日常更新
+```bash
+$ cd /path/to/meidebook
+$ git pull origin master # 下载最新代码
+$ kill -s SIGUSR2 `cat /var/run/meidebook.pid` # 无缝重启Web
+```
+
   其它使用帮助见[Wiki](https://github.com/gazeldx/meidebook/wiki)
