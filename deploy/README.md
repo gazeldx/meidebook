@@ -1,4 +1,4 @@
-[美德公益传书活动](http://meidebook.com/about)
+[美德公益读书活动](http://meidebook.com/about)
 
 # deploy目录说明
 和发布有关，如服务器如何配置等。
