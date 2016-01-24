@@ -7,6 +7,10 @@ class RootController < ApplicationController
     slim :about
   end
 
+  get '/about2' do
+    slim :about2
+  end
+
   get '/register' do
     slim :register
   end
