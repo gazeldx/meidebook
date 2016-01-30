@@ -6,4 +6,4 @@ nohup.out
 /db/*.db
 /node_modules
 /public/uploads/comments/*
-/public/uploads/comments/tmp/*
+/public/uploads/tmp/*

@@ -3,6 +3,8 @@ source 'https://ruby.taobao.org'
 
 gem 'sinatra'
 gem 'sinatra-flash'
+gem 'sprockets', '~> 3.0'
+gem 'sprockets-helpers'
 gem 'sequel'
 gem 'sqlite3'
 gem 'slim'

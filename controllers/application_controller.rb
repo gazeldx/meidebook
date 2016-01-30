@@ -6,6 +6,26 @@ class ApplicationController < Sinatra::Base
   set :bind, '0.0.0.0' # 允许在非本机访问本服务
   set :public_folder, File.expand_path("#{Sinatra::Application.settings.root}/public", __FILE__)
   set :views, File.expand_path("#{Sinatra::Application.settings.root}/views", __FILE__)
+  set :assets, Sprockets::Environment.new(Sinatra::Application.settings.root)
+
+  configure do
+    assets.append_path File.join(Sinatra::Application.settings.root, 'assets', 'stylesheets')
+    assets.append_path File.join(Sinatra::Application.settings.root, 'assets', 'javascripts')
+
+    Sprockets::Helpers.configure do |config|
+      config.environment = assets
+      config.prefix      = '/assets'
+      config.digest      = true
+    end
+  end
+
+  helpers do
+    include Sprockets::Helpers
+  end
+
+  before do
+    cache_control :public, :must_revalidate, :max_age => 60
+  end
 
   enable :sessions
 
