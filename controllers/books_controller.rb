@@ -19,8 +19,8 @@ class BooksController < ApplicationController
       add_received_books(params[:book_code])
     else
       flash[:body] = params[:body]
-      flash_errors(book)
-      flash_errors(comment)
+
+      flash_errors(comment) if flash_errors(book).nil?
     end
 
     redirect "/#{params[:book_code]}"
