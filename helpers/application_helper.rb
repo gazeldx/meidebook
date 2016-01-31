@@ -15,6 +15,10 @@ module ApplicationHelper
     session[:user_id].present?
   end
 
+  def min_if_production
+    Sinatra::Base.production? ? 'min.' : ''
+  end
+
   def set_login_session(user)
     session[:user_id] = user.id
     session[:username] = user.username
