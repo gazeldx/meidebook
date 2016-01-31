@@ -30,19 +30,16 @@ class ApplicationController < Sinatra::Base
   )
 
   # ==== Use Sprockets for asset pipline like rails start ====
-  set :assets, Sprockets::Environment.new(root)
   set :assets_prefix, 'assets'
   set :assets_path, File.join(root, 'public', assets_prefix)
   set :sprockets, (Sprockets::Environment.new(root) { |env| env.logger = Logger.new(STDOUT) })
 
   configure do
-    assets.append_path File.join(root, 'assets', 'stylesheets')
-    assets.append_path File.join(root, 'assets', 'javascripts')
     sprockets.append_path File.join(root, 'assets', 'stylesheets')
     sprockets.append_path File.join(root, 'assets', 'javascripts')
 
     Sprockets::Helpers.configure do |config|
-      config.environment = assets
+      config.environment = sprockets
       config.prefix      = '/assets'
       config.digest      = true
     end

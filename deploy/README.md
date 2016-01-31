@@ -35,4 +35,8 @@ $ git pull origin master # 下载最新代码
 $ kill -s SIGUSR2 `cat /var/run/meidebook.pid` # 无缝重启Web
 ```
 
+## 其它技术点
+* 把多个css或js文件压缩到一个文件中，类似rails的asset pipline的功能，本项目采用sprockets实现。
+只需要执行`$ rake assets:compile`就可以了。
+
   其它使用帮助见[Wiki](https://github.com/gazeldx/meidebook/wiki)

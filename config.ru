@@ -16,7 +16,7 @@ require 'i18n/backend/fallbacks'
 Dir.glob("#{Sinatra::Application.settings.root}/{lib,helpers,uploaders}/*.rb").each { |file| require file }
 Dir.glob("#{Sinatra::Application.settings.root}/{controllers}/*.rb").sort.each { |file| require file }
 
-map('/assets') { run ApplicationController.assets }
+map('/assets') { run ApplicationController.sprockets }
 map('/') { run RootController }
 map('/books') { run BooksController }
 map('/comments') { run CommentsController }
