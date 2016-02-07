@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   post '/' do
     book = Book.find(code: params[:book_code])
     comment = Comment.new(body: params[:body],
+                          photo: params[:photo],
                           book_id: book.id,
                           user_id: session[:user_id] || nil,
                           created_at: Time.now,

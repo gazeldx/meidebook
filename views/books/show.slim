@@ -10,18 +10,26 @@
     br
     - if comment.photo
       img src=comment.photo
+      br
     = comment.body if comment.body
     br
     br
 
-  form action='/comments' method='post'
+  form action='/comments' method='post' enctype='multipart/form-data'
     == errors_message
     input type='hidden' name='book_code' value=params[:book_code]
 
+    .weui_cells_title 请拍照上传带“捐书人手写文字”的书页
     div class='weui_cells weui_cells_form'
       .weui_cell
+        .weui_cell_hd
+          = I18n.t('book.head_page_photo')
         div class='weui_cell_bd weui_cell_primary'
-          textarea name='body' class='weui_textarea' placeholder=I18n.t('comment.body_placeholder') rows='3' required='true'
+          input.weui_input type='file' name='photo'
+
+      .weui_cell
+        div class='weui_cell_bd weui_cell_primary'
+          textarea name='body' class='weui_textarea' placeholder=I18n.t('comment.body_placeholder') rows='3'
             = flash[:body]
 
     .weui_btn_area
