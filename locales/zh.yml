@@ -14,14 +14,22 @@ zh:
   captcha_placeholder: 本书曾传到您手中才可输入
   captcha_not_match: 验证码错误！如果本书曾经传到您手中，请重新输入验证码！
 
+  verify_claim: 批准认领
+  refuse_book: 驳回
+
   user:
     username: 用户名
     password: 密码
+    domain: 个性域名
+    nickname: 昵称
     username_not_exist: 用户名不存在！请重新输入。
     password_not_match: 密码错误！请重新输入。
     username_placeholder: 请输入用户名
     password_placeholder: 请输入密码
-    default_nickname: 读者
+    domain_placeholder: 请输入个性域名
+    nickname_placeholder: 请输入昵称
+    domain_valid_format: 请用字母、数字、（下划线_）或（中划线-）组合。
+    default_nickname: 网友
     login: 登录
     register: 注册
     logout: 退出登录
@@ -32,6 +40,8 @@ zh:
     register_title: 用户注册
     password_hint: 密码提示
     password_hint_placeholder: 在您遗忘密码时，给自己一个提示
+    all_books: '%{w}捐赠的全部图书'
+    settings: 设置
 
   post:
     index: 过往心得

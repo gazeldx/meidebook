@@ -8,11 +8,16 @@ module ApplicationHelper
   end
 
   def current_user
-    User.find(session[:user_id]) if session[:user_id].present?
+    @_user = User[session[:user_id]] if @_user.nil?
+    @_user
   end
 
   def logged?
-    session[:user_id].present?
+    current_user.present?
+  end
+
+  def admin?
+    logged? && current_user.id == 1
   end
 
   def min_if_production

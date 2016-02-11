@@ -1,4 +1,6 @@
 class Post < Sequel::Model
+  many_to_one :user
+
   plugin :validation_helpers
 
   def validate

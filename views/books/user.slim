@@ -1,0 +1,13 @@
+.hd
+  h1.page_title = I18n.t('user.all_books', w: @user.nickname)
+
+.bd
+  .weui_cells_title
+    = "共#{@user.books.size}本图书"
+  /TODO: 加入图书的书名和ISDN等信息显示
+  /div class='weui_cells weui_cells_access'
+    - user.books.each do |book|
+      a class='weui_cell' href="/#{book.code}"
+        div class='weui_cell_bd weui_cell_primary'
+          p = "#{book.id} #{book.code}"
+        .weui_cell_ft = book.created_at.strftime("%-m月%-d日 %H:%M")

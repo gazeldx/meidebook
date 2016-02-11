@@ -1,4 +1,8 @@
 class RootController < ApplicationController
+  before '/settings' do
+    redirect '/login' unless logged?
+  end
+
   get '/' do
     slim :index
   end
@@ -46,12 +50,16 @@ class RootController < ApplicationController
     redirect '/'
   end
 
+  get '/settings' do
+    slim :'/users/settings'
+  end
+
   get '/room' do
     if session[:user_id].blank?
       flash[:notice] = I18n.t('user.not_login_yet')
       redirect '/login'
     else
-      @posts = Post.where(user_id: session[:user_id]).reverse_order(:id)
+      @posts = current_user.posts_dataset.reverse_order(:id)
       slim :room
     end
   end
@@ -77,6 +85,13 @@ class RootController < ApplicationController
     session[:received_books] = nil
     flash[:notice] = I18n.t(:operate_success)
     redirect '/'
+  end
+
+  get '/u/:domain' do
+    @user = User.find(domain: params[:domain])
+    if @user
+      slim :'/books/user'
+    end
   end
 
   # Notice: 本get始终放在最后

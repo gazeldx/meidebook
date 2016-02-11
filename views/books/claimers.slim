@@ -1,0 +1,15 @@
+.hd
+  h1.page_title 图书认领
+
+.bd
+  .weui_cells_title
+    | 所有认领
+  div class='weui_cells weui_cells_access'
+    - @bookusers.each do |bookuser|
+      a class='weui_cell' href="/#{bookuser.book.code}"
+        div class='weui_cell_bd weui_cell_primary'
+          p = "#{bookuser.book.code} 认领者：#{bookuser.user.nickname || bookuser.user.username}"
+        .weui_cell_ft = bookuser.created_at.strftime("%-m月%-d日")
+
+      a href="/books/verify_claim_#{bookuser.id}" class='weui_btn weui_btn_mini weui_btn_primary'
+        = I18n.t(:verify_claim)
