@@ -11,5 +11,6 @@
           p = "#{book.id} #{book.code} 认领者：#{book.user_id}"
         .weui_cell_ft = book.created_at.strftime("%-m月%-d日 %H:%M")
 
-      a href="/books/#{book.id}/refused" class='weui_btn weui_btn_mini weui_btn_warn'
-        = I18n.t(:refuse_book)
+      - if Time.now - book.created_at < 7.days
+        a href="/books/#{book.id}/refused" class='weui_btn weui_btn_mini weui_btn_warn'
+          = I18n.t(:refuse_book)
