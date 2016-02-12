@@ -65,7 +65,7 @@ class BooksController < ApplicationController
     @book = Book.find(code: params[:book_code])
     if @book.user_id.nil?
       Bookuser.create(book_id: @book.id, user_id: current_user.id, created_at: Time.now)
-      flash[:notice] = "您对的本书的认领已经提交审核。如果本书中的捐书人手写笔记，和你捐的其它书的笔记相同，审核就会通过。"
+      flash[:notice] = "认领已提交审核。如本书捐书人手写笔记，和你捐的其它书的笔记相同，审核就会通过。"
     end
 
     redirect "/#{params[:book_code]}"

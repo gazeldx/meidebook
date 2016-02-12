@@ -14,7 +14,7 @@ zh:
   captcha_placeholder: 本书曾传到您手中才可输入
   captcha_not_match: 验证码错误！如果本书曾经传到您手中，请重新输入验证码！
 
-  refuse_book: 驳回
+  refuse_book: 删书
   claim_my_book: 认领本书
   verify_claim: 批准认领
 
