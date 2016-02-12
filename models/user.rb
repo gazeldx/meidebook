@@ -14,6 +14,10 @@ class User < Sequel::Model
     validates_format /\A[a-z_\-0-9]+\z/, :domain, message: I18n.t('user.domain_valid_format')
   end
 
+  def self.valid_domain_chars
+    [('a'..'z'), ('0'..'9')].map { |i| i.to_a }.flatten - ['0', '1', 'l', 'o']
+  end
+
   def nickname_
     self.nickname || "#{self.username.slice(0)}****#{self.username.slice(-1)}"
   end

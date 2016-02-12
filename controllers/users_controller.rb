@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   post '/' do
     user = User.new(username: params[:username],
-                    domain: 10000000 + Random.rand(89999999),
+                    domain: (0...7).map { User.valid_domain_chars[rand(User.valid_domain_chars.length)] }.join,
                     password: Digest::SHA1.hexdigest(params[:password]),
                     password_hint: params[:password_hint])
 

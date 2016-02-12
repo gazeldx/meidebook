@@ -24,6 +24,9 @@ html lang='en'
               a href='/room' class='weui_btn weui_btn_mini weui_btn_default'
                 = I18n.t(:room)
               | &nbsp;&nbsp;
+              a href="/u/#{current_user.domain}" class='weui_btn weui_btn_mini weui_btn_default'
+                = I18n.t(:my_donated_books)
+              | &nbsp;&nbsp;
               a href='/settings' class='weui_btn weui_btn_mini weui_btn_default'
                 = I18n.t('user.settings')
               | &nbsp;&nbsp;
