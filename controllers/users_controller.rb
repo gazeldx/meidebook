@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     current_user.set(domain: params[:domain], nickname: params[:nickname], updated_at: Time.now)
     if current_user.valid?
       current_user.save
-      flash[:notice] = "已更新。"
+      flash[:notice] = "设置已更新。"
     else
       flash_errors(current_user)
     end

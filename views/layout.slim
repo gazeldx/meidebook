@@ -12,4 +12,21 @@ html lang='en'
       .page
         == notice_info
         == error_info
+
+        - if request.path_info != '/' || logged?
+          /.bd.spacing
+          .weui_btn_area
+            - if request.path_info != '/' || logged?
+              a href='/' class='weui_btn weui_btn_mini weui_btn_default'
+                = I18n.t('site.homepage')
+              | &nbsp;&nbsp;
+            - if logged?
+              a href='/room' class='weui_btn weui_btn_mini weui_btn_default'
+                = I18n.t(:room)
+              | &nbsp;&nbsp;
+              a href='/settings' class='weui_btn weui_btn_mini weui_btn_default'
+                = I18n.t('user.settings')
+              | &nbsp;&nbsp;
+              == logout_button
+
         == yield

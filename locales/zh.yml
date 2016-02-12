@@ -17,6 +17,8 @@ zh:
   verify_claim: 批准认领
   refuse_book: 驳回
 
+  room: 自修
+
   user:
     username: 用户名
     password: 密码
@@ -32,8 +34,8 @@ zh:
     default_nickname: 网友
     login: 登录
     register: 注册
-    logout: 退出登录
-    logout_success: 您已成功退出登录！
+    logout: 退出
+    logout_success: 您已退出登录！
     not_login_yet: 您还没有登录，请先登录！
     have_login: 您已经登录！
     login_title: 用户登录
@@ -44,10 +46,10 @@ zh:
     settings: 设置
 
   post:
-    index: 过往心得
-    new: 撰写读书心得
+    index: 过往日记
+    new: 撰写修身日记
     body: 正文
-    body_placeholder: 请撰写读书心得
+    body_placeholder: 请撰写修身日记
 
   book:
     search: 搜索图书

@@ -1,6 +1,9 @@
 class RootController < ApplicationController
-  before '/settings' do
-    redirect '/login' unless logged?
+  before /^\/(settings|room)$/ do
+    unless logged?
+      flash[:notice] = I18n.t('user.not_login_yet')
+      redirect '/login'
+    end
   end
 
   get '/' do
@@ -55,13 +58,8 @@ class RootController < ApplicationController
   end
 
   get '/room' do
-    if session[:user_id].blank?
-      flash[:notice] = I18n.t('user.not_login_yet')
-      redirect '/login'
-    else
-      @posts = current_user.posts_dataset.reverse_order(:id)
-      slim :room
-    end
+    @posts = current_user.posts_dataset.reverse_order(:id)
+    slim :room
   end
 
   get '/captcha' do

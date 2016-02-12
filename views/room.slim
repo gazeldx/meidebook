@@ -3,15 +3,6 @@
 
 .bd
   .weui_btn_area
-    a href='/' class='weui_btn weui_btn_mini weui_btn_default'
-      = I18n.t('site.homepage')
-    | &nbsp;&nbsp;
-    a href='/settings' class='weui_btn weui_btn_mini weui_btn_default'
-      = I18n.t('user.settings')
-    | &nbsp;&nbsp;
-    == logout_button
-
-  .weui_btn_area
     a href='/posts/new' class='weui_btn weui_btn_primary'
       = I18n.t('post.new')
 
