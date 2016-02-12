@@ -26,13 +26,10 @@ module ApplicationHelper
 
   def set_login_session(user)
     session[:user_id] = user.id
-    session[:username] = user.username
-    session[:nickname] = user.nickname || I18n.t('user.default_nickname')
-    session[:email] = user.email
   end
 
   def clear_session
-    session[:user_id], session[:username], session[:nickname], session[:email] = nil, nil, nil, nil
+    session[:user_id] = nil
   end
 
   def add_received_books(book_code)
@@ -40,7 +37,6 @@ module ApplicationHelper
   end
 
   def notice_info
-    # require 'sinatra/flash'
     result = ''
     if flash[:notice]
       result = "<div class='weui_toptips weui_primary js_tooltips' style='color: red; display:block!important;'>#{flash[:notice]}</div>"
