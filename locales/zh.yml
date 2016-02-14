@@ -35,6 +35,7 @@ zh:
     domain_valid_format: 请用字母、数字、（下划线_）或（中划线-）组合。
     login: 登录
     register: 注册
+    register_benifit: 注册的好处
     logout: 退出
     logout_success: 您已退出登录！
     not_login_yet: 您还没有登录，请先登录！
@@ -42,8 +43,8 @@ zh:
     login_title: 用户登录
     register_title: 用户注册
     password_hint: 密码提示
-    password_hint_placeholder: 在您遗忘密码时，给自己一个提示
-    all_books: '%{w}捐赠的全部图书'
+    password_hint_placeholder: 遗忘密码时，给自己一个提示
+    all_books: '%{who}捐赠了%{book_count}本书'
     settings: 设置
 
   post:

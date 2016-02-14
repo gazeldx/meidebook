@@ -1,5 +1,5 @@
 .hd
-  h1.page_title = I18n.t('user.all_books', w: @user.nickname)
+  h1.page_title = I18n.t('user.all_books', who: @user.nickname, book_count: @user.books.size)
 
 .bd
   .weui_cells_title

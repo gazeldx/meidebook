@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
       set_login_session(user)
 
-      redirect '/room'
+      redirect '/settings'
     else
       flash[:username] = params[:username]
       flash[:password_hint] = params[:password_hint]
