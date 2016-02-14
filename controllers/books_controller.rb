@@ -26,15 +26,6 @@ class BooksController < ApplicationController
     redirect "/#{params[:book_code]}"
   end
 
-  post '/:id/update_isbn' do
-    if admin?
-      book = Book[params[:id]]
-      book.update(isbn: params[:isbn])
-      flash[:notice] = "图书“#{book.code}” 《#{book.name}》 id=#{book.id} 的isbn已更新。"
-      redirect '/books/latest'
-    end
-  end
-
   get '/latest' do
     if admin?
       @books = Book.reverse_order(:created_at)
@@ -49,6 +40,18 @@ class BooksController < ApplicationController
       book.bookusers_dataset.delete
       book.destroy
       flash[:notice] = "图书“#{book.code}” id=#{book.id}已被删除。"
+      redirect '/books/latest'
+    end
+  end
+
+  post '/:id/update_isbn' do
+    if admin?
+      book = Book[params[:id]]
+      book.update(isbn: params[:isbn])
+
+      invoke_douban_book(book.isbn)
+
+      flash[:notice] = "图书“#{book.code}” 《#{book.name}》 id=#{book.id} 的ISBN已更新。"
       redirect '/books/latest'
     end
   end
@@ -79,5 +82,30 @@ class BooksController < ApplicationController
     end
 
     redirect "/#{params[:book_code]}"
+  end
+
+  def invoke_douban_book(isbn)
+    conn = Faraday.new(url: 'https://api.douban.com') do |faraday|
+      faraday.request  :url_encoded             # form-encode POST params
+      faraday.response :logger                  # log requests to STDOUT
+      faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
+    end
+
+    # begin
+      res = conn.get do |req|
+        req.url "/v2/book/isbn/#{isbn}"
+        req.options.timeout = 4
+        req.options.open_timeout = 2
+      end
+
+      JSON.parse(res.body)
+
+      booklet = Booklet[isbn] || (Booklet.unrestrict_primary_key; Booklet.new(id: isbn, created_at: Time.now))
+      booklet.douban_message = res.body
+      booklet.updated_at = Time.now
+      booklet.save
+    # rescue Exception => exception
+    #   flash[:error] = "调用 /isbn 接口时，遇到了异常：#{exception.to_s}！请联系统管理员。"
+    # end
   end
 end

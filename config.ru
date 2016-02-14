@@ -12,6 +12,7 @@ require 'active_support/all'
 require 'json'
 require 'i18n'
 require 'i18n/backend/fallbacks'
+require 'faraday'
 
 Dir.glob("#{Sinatra::Application.settings.root}/{lib,helpers,uploaders}/*.rb").each { |file| require file }
 Dir.glob("#{Sinatra::Application.settings.root}/{controllers}/*.rb").sort.each { |file| require file }

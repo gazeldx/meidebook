@@ -12,8 +12,9 @@ gem 'puma'
 gem 'activesupport'
 gem 'carrierwave' # 文件上传
 gem 'carrierwave-sequel', require: 'carrierwave/sequel'
-gem 'mini_magick'# 图片处理
+gem 'mini_magick' # 图片处理
 gem 'subexec'
+gem 'faraday' # API调用
 
 group :development do
   gem 'sinatra-reloader'

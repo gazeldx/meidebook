@@ -88,7 +88,7 @@ class RootController < ApplicationController
   get '/u/:domain' do
     @user = User.find(domain: params[:domain])
     if @user
-      slim :'/books/user'
+      slim :'/books/user_donated'
     end
   end
 
