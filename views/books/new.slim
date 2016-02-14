@@ -14,5 +14,11 @@
         div class='weui_cell_bd weui_cell_primary'
           input.weui_input type='file' name='photo' required='true'
 
+      .weui_cell
+        .weui_cell_hd
+          label.weui_label for='name' = I18n.t('book.name')
+        div class='weui_cell_bd weui_cell_primary'
+          input.weui_input type='text' name='name' id='name' placeholder=I18n.t('book.name_placeholder') autocomplete='off'
+
     .weui_btn_area
       button type='submit' class='weui_btn weui_btn_primary' = I18n.t('book.create_button')

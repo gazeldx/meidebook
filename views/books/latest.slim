@@ -8,9 +8,16 @@
     - @books.each do |book|
       a class='weui_cell' href="/#{book.code}"
         div class='weui_cell_bd weui_cell_primary'
-          p = "#{book.id} #{book.code} 认领者：#{book.user_id}"
+          p = "#{book.id} #{book.code} 《#{book.name}》 认领者：#{book.user_id}"
         .weui_cell_ft = book.created_at.strftime("%-m月%-d日 %H:%M")
 
-      /- if Time.now - book.created_at < 7.days
-      a href="/books/#{book.id}/refused" class='weui_btn weui_btn_mini weui_btn_warn'
-        = I18n.t(:refuse_book)
+      - if Time.now - book.created_at < 7.days
+        a href="/books/#{book.id}/refused" class='weui_btn weui_btn_mini weui_btn_warn'
+          = I18n.t(:refuse_book)
+        | &nbsp;
+
+      form action="/books/#{book.id}/update_isbn" method='post' style='display:inline;'
+        input type='text' name='isbn' value=book.isbn
+        | &nbsp;
+        button type='submit' class='weui_btn weui_btn_mini weui_btn_primary'
+          = I18n.t('book.update_isbn')

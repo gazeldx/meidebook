@@ -54,12 +54,15 @@ zh:
     body_placeholder: 请撰写修身日记
 
   book:
-    search: 搜索图书
     code: 图书编号
+    name: 书名
+    search: 搜索图书
     code_placeholder: 请输入图书编号
+    name_placeholder: 可不填。填后，系统会帮您生成本书作者、简介、价格、出版社等信息
     code_valid_combine_format: 组成元素可以是字母、数字、下划线和中划线。
     head_page_photo: 扉页照片
     create_button: 登记本图书
+    update_isbn: 更新ISBN
 
   comment:
     body: 回复

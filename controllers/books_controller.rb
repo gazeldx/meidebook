@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   post '/' do
     book = Book.new(code: params[:book_code],
+                    name: params[:name],
                     created_at: Time.now,
                     updated_at: Time.now)
 
@@ -23,6 +24,15 @@ class BooksController < ApplicationController
     end
 
     redirect "/#{params[:book_code]}"
+  end
+
+  post '/:id/update_isbn' do
+    if admin?
+      book = Book[params[:id]]
+      book.update(isbn: params[:isbn])
+      flash[:notice] = "图书“#{book.code}” 《#{book.name}》 id=#{book.id} 的isbn已更新。"
+      redirect '/books/latest'
+    end
   end
 
   get '/latest' do
