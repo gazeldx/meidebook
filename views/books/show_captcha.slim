@@ -28,9 +28,10 @@
     .weui_btn_area
       button type='submit' class='weui_btn weui_btn_primary' = I18n.t(:ok)
 
-  article.weui_article
-    section
-      p
-        = "#{I18n.t(:author_)}：#{@book.info['author'].join('，')}，#{I18n.t(:price)}：#{@book.info['price']}元"
-        br
-        = @book.info['summary']
+  - if @book.info.present?
+    article.weui_article
+      section
+        p
+          = "#{I18n.t(:author_)}：#{@book.info['author'].join('，')}，#{I18n.t(:price)}：#{@book.info['price']}元"
+          br
+          = @book.info['summary']
