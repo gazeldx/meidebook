@@ -32,6 +32,8 @@
     article.weui_article
       section
         p
-          = "#{I18n.t(:author_)}：#{@book.info['author'].join('，')}，#{I18n.t(:price)}：#{@book.info['price']}元"
+          = "#{I18n.t(:author_)}：#{@book.info['author'].join('，')}，#{I18n.t(:price)}：#{@book.info['price']}"
           br
           = @book.info['summary']
+          br
+          img src=@book.info['images']['large']
