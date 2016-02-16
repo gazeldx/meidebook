@@ -32,8 +32,15 @@
     article.weui_article
       section
         p
+          img src=@book.info['images']['large']
+          br
           = "#{I18n.t(:author_)}：#{@book.info['author'].join('，')}，#{I18n.t(:price)}：#{@book.info['price']}"
           br
+          h4
+            | 内容简介
           = @book.info['summary']
-          br
-          img src=@book.info['images']['large']
+          - if @book.info['author_intro'].present?
+            h4
+              | 作者简介
+            = @book.info['author_intro']
+
