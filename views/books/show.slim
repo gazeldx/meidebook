@@ -1,11 +1,11 @@
 .hd
   h1.page_title
-    = "公益图书“#{@book.code}”"
+    = book_show_title(@book)
   p.page_desc
     = "创建于#{@book.created_at.strftime('%-m月%-d日')}"
     - if @book.user_id
       br
-      = " 本书捐赠者："
+      = " 捐赠者："
       a href="/u/#{@book.user.domain}" title='查看Ta捐赠的全部图书'
         = @book.user.nickname_
     - else

@@ -1,6 +1,6 @@
 .hd
   h1.page_title
-    | 这是一本公益图书
+    = book_show_title(@book)
   p.page_desc
     | 如果本书曾经传到您手中，请输入验证码，
     br
@@ -28,3 +28,9 @@
     .weui_btn_area
       button type='submit' class='weui_btn weui_btn_primary' = I18n.t(:ok)
 
+  article.weui_article
+    section
+      p
+        = "#{I18n.t(:author_)}：#{@book.info['author'].join('，')}，#{I18n.t(:price)}：#{@book.info['price']}元"
+        br
+        = @book.info['summary']

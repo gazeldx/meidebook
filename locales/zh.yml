@@ -21,6 +21,9 @@ zh:
   room: 自修
   my_donated_books: 我捐的书
 
+  author_: 作者
+  price: 定价
+
   user:
     username: 用户名
     password: 密码
