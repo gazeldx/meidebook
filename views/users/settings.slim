@@ -2,14 +2,14 @@
   h1.page_title = I18n.t('user.settings')
 
 .bd
-  form action='/users/do_settings' method='post'
+  form#validation_form action='/users/do_settings' method='post'
     == errors_message
     div class='weui_cells weui_cells_form'
       .weui_cell
         .weui_cell_hd
           = I18n.t('user.domain')
         div class='weui_cell_bd weui_cell_primary'
-          input.weui_input type='text' name='domain' id='domain' value=current_user.domain required='true' placeholder=I18n.t('user.domain_placeholder')
+          input.weui_input type='text' name='domain' id='domain' value=current_user.domain required='true' minlength=4 maxlength=35 placeholder=I18n.t('user.domain_placeholder')
 
       .weui_cell
         .weui_cell_hd

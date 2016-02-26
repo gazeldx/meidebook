@@ -1,0 +1,18 @@
+- unless logged?
+  .bd
+    br
+    form#quick_login_form action='/simple_login' method='post'
+      == errors_message
+      .weui_cells_title = I18n.t(:login_without_password_and_register_tip)
+      div class='weui_cells weui_cells_form'
+        .weui_cell
+          .weui_cell_hd
+            label.weui_label for='username' = I18n.t('user.username')
+          div class='weui_cell_bd weui_cell_primary'
+            input.weui_input type='text' name='username' id='username' value=flash[:username] required='true' minlength=4 maxlength=35 placeholder=I18n.t('user.username_placeholder')
+
+      .weui_btn_area
+        button type='submit' class='weui_btn weui_btn_warn' = I18n.t('user.login_without_password_and_register')
+        br
+      javascript:
+        $('#quick_login_form').validate(validationParams);

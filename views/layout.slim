@@ -32,15 +32,17 @@ html lang='en'
               | &nbsp;&nbsp;
               == logout_button
 
+        javascript:
+          var validationParams = {
+            errorClass: "my-error-class",
+            validClass: "my-valid-class",
+            submitHandler: function (form) {
+              form.submit();
+            }
+          };
+          jQuery.extend(validationParams, ((typeof customizedValidation === 'undefined') ? {} : customizedValidation));
+
         == yield
 
-  javascript:
-    var validationParams = {
-      errorClass: "my-error-class",
-      validClass: "my-valid-class",
-      submitHandler: function (form) {
-        form.submit();
-      }
-    };
-    jQuery.extend(validationParams, ((typeof customizedValidation === 'undefined') ? {} : customizedValidation));
-    $('form').validate(validationParams);
+        javascript:
+          $('#validation_form').validate(validationParams);

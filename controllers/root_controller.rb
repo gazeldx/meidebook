@@ -134,7 +134,7 @@ class RootController < ApplicationController
 
   def login_and_redirect(user)
     set_login_session(user)
-    flash[:notice] = I18n.t('user.login_finished')
+    flash[:notice] = I18n.t('user.login_finished_with_username', w: user.username)
     redirect '/settings'
   end
 end

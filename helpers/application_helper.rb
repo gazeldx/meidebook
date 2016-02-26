@@ -1,10 +1,10 @@
 module ApplicationHelper
   def include_slim(name, options = {}, &block)
-    Slim::Template.new("#{name}.slim", options).render(self, &block)
+    Slim::Template.new("#{Sinatra::Application.settings.root}/views/#{name}.slim", options).render(self, &block)
   end
 
   def include_erb(name, options = {}, &block)
-    Slim::Template.new("#{name}.erb", options).render(self, &block)
+    Slim::Template.new("#{Sinatra::Application.settings.root}/views/#{name}.erb", options).render(self, &block)
   end
 
   def current_user

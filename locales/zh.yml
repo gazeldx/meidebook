@@ -48,6 +48,7 @@ zh:
     not_login_yet: 您还没有登录，请先登录！
     have_login: 您已经登录！
     login_finished: 您已登录！
+    login_finished_with_username: 您已免密码登录。以后访问本站，只要记住用户名“%{w}”！
     login_title: 用户登录
     register_title: 用户注册
     password_hint: 密码提示
