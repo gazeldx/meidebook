@@ -5,7 +5,8 @@ Bundler.require
 Dir.glob("#{Sinatra::Application.settings.root}/{lib,helpers,uploaders}/*.rb").each { |file| require file }
 require './controllers/application_controller'
 
-# 说明：用于把多个css或js文件压缩到一个文件中，类似rails的asset pipline。采用sprockets实现。只需要执行 $ rake assets:compile 就可以了
+# 说明：用于把多个css或js文件压缩到一个文件中，类似rails的asset pipline。采用sprockets实现。只需要
+# 执行 $ rake assets:compile 就可以了
 namespace :assets do
   desc 'compile assets'
   task :compile => [:compile_js, :compile_css] do
