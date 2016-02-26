@@ -18,6 +18,10 @@ class User < Sequel::Model
     [('a'..'z'), ('0'..'9')].map { |i| i.to_a }.flatten - ['0', '1', 'l', 'o']
   end
 
+  def self.default_domain
+    (0...7).map { self.valid_domain_chars[rand(self.valid_domain_chars.length)] }.join
+  end
+
   def nickname_
     self.nickname || "#{self.username.slice(0)}****#{self.username.slice(-1)}"
   end

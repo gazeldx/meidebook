@@ -1,7 +1,8 @@
 .hd
   h1.page_title = I18n.t('site.title')
   p.page_desc
-    = I18n.t('site.desc')
+    b
+      = I18n.t('site.desc')
     | （
     a href='/about' 活动详情
     | ）
@@ -21,15 +22,23 @@
   div class='weui_toast' style='display: none;'
     i class='weui_icon_toast'
     p class='weui_toast_content'
-      = I18n.t('book.code_placeholder')
+      = I18n.t('book.search_tip')
 
-.bd.spacing
-  br
-  - unless logged?
-    a href='/register' class='weui_btn weui_btn_plain_primary'
-      = I18n.t('user.register_benifit')
-    a href='/login' class='weui_btn weui_btn_plain_default'
-      = I18n.t('user.login')
+- unless logged?
+  .bd
+    br
+    form action='/simple_login' method='post'
+      == errors_message
+      .weui_cells_title = I18n.t(:login_without_password_and_register_tip)
+      div class='weui_cells weui_cells_form'
+        .weui_cell
+          .weui_cell_hd
+            label.weui_label for='username' = I18n.t('user.username')
+          div class='weui_cell_bd weui_cell_primary'
+            input.weui_input type='text' name='username' id='username' value=flash[:username] required='true' minlength=4 maxlength=35 placeholder=I18n.t('user.username_placeholder')
+
+      .weui_btn_area
+        button type='submit' class='weui_btn weui_btn_warn' = I18n.t('user.login_without_password_and_register')
 
 javascript:
   function searchBook() {

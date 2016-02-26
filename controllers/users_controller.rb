@@ -1,15 +1,14 @@
 class UsersController < ApplicationController
   post '/' do
     user = User.new(username: params[:username],
-                    domain: (0...7).map { User.valid_domain_chars[rand(User.valid_domain_chars.length)] }.join,
+                    domain: User.default_domain,
                     password: Digest::SHA1.hexdigest(params[:password]),
                     password_hint: params[:password_hint])
 
     if user.valid?
       user.save
-
       set_login_session(user)
-
+      flash[:notice] = I18n.t('user.register_finished')
       redirect '/settings'
     else
       flash[:username] = params[:username]

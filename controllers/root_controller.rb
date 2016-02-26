@@ -18,6 +18,29 @@ class RootController < ApplicationController
     slim :about2
   end
 
+  post '/simple_login' do
+    @user = User.find(username: params[:username])
+    if @user.nil?
+      user = User.new(username: params[:username], domain: User.default_domain, password: Digest::SHA1.hexdigest(''))
+      if user.valid?
+        user.save
+        login_and_redirect(user)
+      else
+        flash[:username] = params[:username]
+        flash_errors(user)
+        redirect '/'
+      end
+    else
+      if @user.password == Digest::SHA1.hexdigest('')
+        login_and_redirect(@user)
+      else
+        flash[:username] = params[:username]
+        flash[:notice] = I18n.t('user.please_input_password')
+        redirect '/login'
+      end
+    end
+  end
+
   get '/register' do
     slim :register
   end
@@ -36,7 +59,7 @@ class RootController < ApplicationController
     else
       if @user.password == Digest::SHA1.hexdigest(params[:password])
         set_login_session(@user)
-
+        flash[:notice] = I18n.t('user.login_finished')
         redirect '/room'
       else
         flash[:error] = I18n.t('user.password_not_match')
@@ -105,5 +128,13 @@ class RootController < ApplicationController
     else
       slim :'/books/new'
     end
+  end
+
+  private
+
+  def login_and_redirect(user)
+    set_login_session(user)
+    flash[:notice] = I18n.t('user.login_finished')
+    redirect '/settings'
   end
 end

@@ -23,6 +23,7 @@ zh:
 
   author_: 作者
   price: 定价
+  login_without_password_and_register_tip: 无需注册，无需密码，只要用户名，就可直接登入
 
   user:
     username: 用户名
@@ -33,16 +34,20 @@ zh:
     password_not_match: 密码错误！请重新输入。
     username_placeholder: 请输入用户名
     password_placeholder: 请输入密码
+    please_input_password: 请输入密码！
     domain_placeholder: 请输入个性域名
     nickname_placeholder: 请输入昵称
     domain_valid_format: 请用字母、数字、（下划线_）或（中划线-）组合。
     login: 登录
+    login_without_password_and_register: 免注册免密登录
     register: 注册
-    register_benifit: 注册的好处
+#    register_benifit: 注册的好处
+    register_finished: 您已注册并登录！
     logout: 退出
     logout_success: 您已退出登录！
     not_login_yet: 您还没有登录，请先登录！
     have_login: 您已经登录！
+    login_finished: 您已登录！
     login_title: 用户登录
     register_title: 用户注册
     password_hint: 密码提示
@@ -60,7 +65,8 @@ zh:
     code: 图书编号
     name: 书名
     search: 搜索图书
-    code_placeholder: 请输入图书编号
+    search_tip: 请输入图书编号
+    code_placeholder: 由捐书人设定，并手写在扉页上的
     name_placeholder: 可不填。填后，系统会帮您生成本书作者、简介、价格、出版社等信息
     code_valid_combine_format: 组成元素可以是字母、数字、下划线和中划线。
     head_page_photo: 扉页照片

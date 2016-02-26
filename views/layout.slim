@@ -33,3 +33,14 @@ html lang='en'
               == logout_button
 
         == yield
+
+  javascript:
+    var validationParams = {
+      errorClass: "my-error-class",
+      validClass: "my-valid-class",
+      submitHandler: function (form) {
+        form.submit();
+      }
+    };
+    jQuery.extend(validationParams, ((typeof customizedValidation === 'undefined') ? {} : customizedValidation));
+    $('form').validate(validationParams);
