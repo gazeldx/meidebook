@@ -73,4 +73,8 @@ module ApplicationHelper
   def logout_button
     "<a href='/logout' class='weui_btn weui_btn_mini weui_btn_default'>#{I18n.t('user.logout')}</a>" if logged?
   end
+
+  def brief_site_desc
+    "<p class='page_desc'><b>#{I18n.t('site.desc')}</b>（<a href='/about'>活动详情</a>）</p>"
+  end
 end

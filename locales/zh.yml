@@ -53,7 +53,7 @@ zh:
     register_title: 用户注册
     password_hint: 密码提示
     password_hint_placeholder: 遗忘密码时，给自己一个提示
-    all_books: '%{who}捐赠了%{book_count}本书'
+    all_books: '%{who}捐了%{book_count}本书'
     settings: 设置
 
   post:
