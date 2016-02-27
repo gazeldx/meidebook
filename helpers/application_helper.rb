@@ -77,4 +77,8 @@ module ApplicationHelper
   def brief_site_desc
     "<p class='page_desc'><b>#{I18n.t('site.desc')}</b>（<a href='/about'>活动详情</a>）</p>"
   end
+
+  def default_title
+    "#{I18n.t('site.short_title')}：#{I18n.t('site.desc')}！"
+  end
 end

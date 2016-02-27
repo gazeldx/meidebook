@@ -1,4 +1,5 @@
 class ApplicationController < Sinatra::Base
+  helpers Sinatra::ContentFor
   helpers ApplicationHelper, BooksHelper
 
   register Sinatra::Flash

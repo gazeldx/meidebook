@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sinatra/base'
+require 'sinatra/content_for'
 require 'sinatra/flash'
 require 'sprockets'
 require 'sprockets-helpers'

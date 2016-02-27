@@ -3,7 +3,7 @@ html lang='en'
   head
     meta charset='UTF-8'
     meta name='viewport' content='width=device-width,initial-scale=1,user-scalable=0'
-    title = @title.present? ? "#{@title} | #{I18n.t('site.title')}" : I18n.t('site.title')
+    title = yield_content(:title)
     link href="/assets/application.#{min_if_production}css" rel='stylesheet' type='text/css' media='all'
     script src="/assets/application.#{min_if_production}js"
 
