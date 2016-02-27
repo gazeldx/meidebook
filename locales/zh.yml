@@ -56,6 +56,7 @@ zh:
     password_hint_placeholder: 遗忘密码时，给自己一个提示
     all_books: '%{who}捐了%{book_count}本书'
     settings: 设置
+    settings_title: 我的设置
 
   post:
     index: 过往日记

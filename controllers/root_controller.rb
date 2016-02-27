@@ -2,7 +2,7 @@ class RootController < ApplicationController
   before /^\/(settings|room)$/ do
     unless logged?
       flash[:notice] = I18n.t('user.not_login_yet')
-      redirect '/login'
+      redirect '/'
     end
   end
 

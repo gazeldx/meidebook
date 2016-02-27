@@ -1,8 +1,10 @@
+- name = logged? && current_user == @user ? '我' : @user.nickname
+
 - content_for :title do
-  = "#{@user.nickname}捐了#{@user.books.size}本书，只为传递正能量 | #{default_title}"
+  = "#{name}捐了#{@user.books.size}本书，只为传递正能量 | #{default_title}"
 
 .hd
-  h1.page_title = I18n.t('user.all_books', who: @user.nickname, book_count: @user.books.size)
+  h1.page_title = I18n.t('user.all_books', who: name, book_count: @user.books.size)
   == brief_site_desc
 
 .bd

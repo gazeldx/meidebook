@@ -1,3 +1,6 @@
+- content_for :title do
+  = "#{I18n.t('user.login_title')} | #{default_title}"
+
 - if logged?
   = I18n.t('user.have_login')
 - else
