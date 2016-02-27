@@ -16,6 +16,10 @@ module ApplicationHelper
     current_user.present?
   end
 
+  def it_is_me?(user)
+    (logged? && current_user == user)
+  end
+
   def admin?
     logged? && current_user.id == 1
   end

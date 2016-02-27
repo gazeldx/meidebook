@@ -1,5 +1,6 @@
+- title = it_is_me?(@book.user) ? '我捐了本书' : '一本正在流传的书'
 - content_for :title do
-  = "一本正在流传的公益图书#{book_name(@book)} | #{default_title}"
+  = "#{title}#{book_name(@book)} | #{default_title}"
 
 .hd
   h1.page_title
