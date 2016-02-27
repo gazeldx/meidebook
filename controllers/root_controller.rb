@@ -120,7 +120,7 @@ class RootController < ApplicationController
     @book = Book.find(code: params[:book_code])
 
     if @book
-      if session[:received_books].to_s.split(' ').include?(params[:book_code])
+      if it_is_me?(@book.user) || session[:received_books].to_s.split(' ').include?(params[:book_code])
         slim :'/books/show'
       else
         slim :'/books/show_captcha'
