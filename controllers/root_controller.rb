@@ -18,6 +18,11 @@ class RootController < ApplicationController
     slim :about2
   end
 
+  get '/please_login' do
+    flash[:notice] = '请先免注册、免密码登录！登录后，就可以认领你的书了。'
+    redirect '/'
+  end
+
   post '/simple_login' do
     @user = User.find(username: params[:username])
     if @user.nil?
