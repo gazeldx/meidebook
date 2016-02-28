@@ -15,12 +15,12 @@
     - else
       | 。
       - if logged?
-        - if Bookuser.where(book_id: @book.id, user_id: current_user.id)
-          | 您已经申请了对本书的认领。
-        - else
+        - if Bookuser.where(book_id: @book.id, user_id: current_user.id).empty?
           | 若本书是您捐的，请
           a href="/books/#{@book.code}/claim" class='weui_btn weui_btn_mini weui_btn_primary'
             = I18n.t(:claim_my_book)
+        - else
+          | 您已经申请了对本书的认领。
       - else
         | 若本书是您捐的，请
         a href="/please_login" class='weui_btn weui_btn_mini weui_btn_primary'
