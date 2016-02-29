@@ -4,6 +4,10 @@
 .hd
   h1.page_title = I18n.t('site.title')
   == brief_site_desc
+  p.page_desc
+    | 共#{@user_count}名网友，捐赠了
+    a href='/books'
+      | #{@book_count}本书
 
 .bd
   div class='weui_cells weui_cells_form'

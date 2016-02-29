@@ -1,4 +1,10 @@
 class BooksController < ApplicationController
+  get '/' do
+    @user_count = Book.where('user_id IS NOT NULL').distinct.select(:user_id).count
+    @books = Book.where('user_id IS NOT NULL').reverse_order(:created_at)
+    slim :'/books/index'
+  end
+
   post '/' do
     book = Book.new(code: params[:book_code],
                     name: params[:name],
