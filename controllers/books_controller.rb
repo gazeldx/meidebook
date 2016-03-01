@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   get '/' do
     @user_count = Book.where('user_id IS NOT NULL').distinct.select(:user_id).count
-    @books = Book.where('user_id IS NOT NULL').reverse_order(:created_at)
+    @books = Book.where('user_id IS NOT NULL').reverse_order(:id)
     slim :'/books/index'
   end
 

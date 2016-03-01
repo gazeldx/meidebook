@@ -10,7 +10,8 @@
     | 近期捐赠
   div class='weui_cells weui_cells_access'
     - @books.each do |book|
-      a class='weui_cell' href=book.info['alt']
+      a class='weui_cell' href="/u/#{book.user.domain}"
         div class='weui_cell_bd weui_cell_primary'
-          p = "#{book.info['title'] || book.name || '未命名的书'}#{'（无法跳转到网页）' unless book.info['alt']}"
-        .weui_cell_ft = book.created_at.strftime("%-m月%-d日 %H:%M")
+          p = book.info['title'] || book.name || '未命名的书'
+        .weui_cell_ft
+          == "#{book.user.nickname_}&nbsp;&nbsp;#{book.created_at.strftime('%-m月%-d日')}"
