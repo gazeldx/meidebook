@@ -79,7 +79,11 @@ module ApplicationHelper
   end
 
   def brief_site_desc
-    "<p class='page_desc'><b>#{I18n.t('site.desc')}</b>（<a href='/about'>活动详情</a>）</p>"
+    "<p class='page_desc' style='color: #225fba;'><b>#{I18n.t('site.desc')}</b>（<a href='/about'>活动详情</a>）</p>"
+  end
+
+  def brief_users_books_desc
+    "<p class='page_desc'>共#{Book.where('user_id IS NOT NULL').distinct.select(:user_id).count}名网友，捐赠了<a href='/books'>#{Book.where('user_id IS NOT NULL').count}本书</a></p>"
   end
 
   def default_title

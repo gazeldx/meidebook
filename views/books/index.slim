@@ -4,13 +4,14 @@
 .hd
   h1.page_title
     | #{@user_count}名网友，#{@books.count}本书……
+  == brief_site_desc
 
 .bd
   .weui_cells_title
     | 近期捐赠
   div class='weui_cells weui_cells_access'
     - @books.each do |book|
-      a class='weui_cell' href="/u/#{book.user.domain}"
+      a class='weui_cell' href="/books/#{book.id}"
         div class='weui_cell_bd weui_cell_primary'
           p = book.info['title'] || book.name || '未命名的书'
         .weui_cell_ft

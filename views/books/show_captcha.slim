@@ -32,20 +32,9 @@
     .weui_btn_area
       button type='submit' class='weui_btn weui_btn_primary' = I18n.t(:ok)
 
-  - if @book.info.present?
-    article.weui_article
-      section
-        p
-          img src=@book.info['images']['large']
-          br
-          = "#{I18n.t(:author_)}：#{@book.info['author'].join('，')}，#{I18n.t(:price)}：#{@book.info['price']}"
-          br
-          h4
-            | 内容简介
-          = @book.info['summary']
-          - if @book.info['author_intro'].present?
-            h4
-              | 作者简介
-            = @book.info['author_intro']
+  == include_slim '/books/_book_info'
+
+  - @user = @book.user
+  == include_slim '/books/_user_books_list'
 
 == include_slim '_quick_login'

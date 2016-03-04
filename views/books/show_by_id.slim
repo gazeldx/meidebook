@@ -1,0 +1,32 @@
+- title = it_is_me?(@book.user) ? '我捐了本书' : '一本正在流传的书'
+- content_for :title do
+  = "#{title}#{book_name(@book)} | #{default_title}"
+
+.hd
+  h1.page_title
+    == book_show_title(@book)
+  p.page_desc
+    = "创建于#{@book.created_at.strftime('%-m月%-d日')}"
+    - if @book.user_id
+      br
+      = " 捐赠者："
+      == user_homepage_link(@book.user)
+    - else
+      | 。
+      - if logged?
+        - if Bookuser.where(book_id: @book.id, user_id: current_user.id).empty?
+          | 若本书是您捐的，请
+          a href="/books/#{@book.code}/claim" class='weui_btn weui_btn_mini weui_btn_primary'
+            = I18n.t(:claim_my_book)
+        - else
+          | 您已经申请了对本书的认领。
+      - else
+        | 若本书是您捐的，请
+        a href="/please_login" class='weui_btn weui_btn_mini weui_btn_primary'
+          = I18n.t(:claim_my_book)
+
+.bd
+  == include_slim '/books/_book_info'
+
+  - @user = @book.user
+  == include_slim '/books/_user_books_list'

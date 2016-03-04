@@ -1,0 +1,10 @@
+- if @user
+  .weui_cells_title
+    = "#{@user.nickname_} 捐的#{@user.books.size}本书"
+  div class='weui_cells weui_cells_access'
+    - @user.books_dataset.reverse_order(:id).each do |book|
+      a class='weui_cell' href=(it_is_me?(@user) ? "/#{book.code}" : "/books/#{book.id}")
+        div class='weui_cell_bd weui_cell_primary'
+          p style=(book.info['alt'] ? nil : 'color: #888')
+            = "#{book.info['title'] || book.name || '未命名的书'}"
+        .weui_cell_ft = book.created_at.strftime('%-m月%-d日 %H:%M')

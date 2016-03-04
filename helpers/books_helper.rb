@@ -4,6 +4,6 @@ module BooksHelper
   end
 
   def book_show_title(book)
-    "公益图书<br>#{book_name(book)}"
+    book_name(book)
   end
 end

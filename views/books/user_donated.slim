@@ -1,4 +1,4 @@
-- name = it_is_me?(@user) ? '我' : @user.nickname
+- name = it_is_me?(@user) ? '我' : @user.nickname_
 
 - content_for :title do
   = "#{name}捐了#{@user.books.size}本书，只为传递正能量 | #{default_title}"
@@ -8,12 +8,4 @@
   == brief_site_desc
 
 .bd
-  .weui_cells_title
-    = "共#{@user.books.size}本图书"
-  div class='weui_cells weui_cells_access'
-    - @user.books_dataset.reverse_order(:id).each do |book|
-      a class='weui_cell' href=(it_is_me?(@user) ? "/#{book.code}" : book.info['alt'])
-        div class='weui_cell_bd weui_cell_primary'
-          p style=(book.info['alt'] ? nil : 'color: #888')
-            = "《#{book.info['title'] || book.name || '未命名的书'}》"
-        .weui_cell_ft = book.created_at.strftime('%-m月%-d日 %H:%M')
+  == include_slim '/books/_user_books_list'

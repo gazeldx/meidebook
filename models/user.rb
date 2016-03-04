@@ -23,6 +23,6 @@ class User < Sequel::Model
   end
 
   def nickname_
-    self.nickname || "#{self.username.slice(0)}****#{self.username.slice(-1)}"
+    self.nickname || "**#{self.username.slice(1)}**"
   end
 end

@@ -7,8 +7,6 @@ class RootController < ApplicationController
   end
 
   get '/' do
-    @user_count = Book.where('user_id IS NOT NULL').distinct.select(:user_id).count
-    @book_count = Book.where('user_id IS NOT NULL').count
     slim :index
   end
 

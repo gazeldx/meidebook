@@ -72,7 +72,7 @@ class BooksController < ApplicationController
   get '/verify_claim_:bookuser_id' do
     if admin?
       bookuser = Bookuser[params[:bookuser_id]]
-      bookuser.book.update(user_id: current_user.id)
+      bookuser.book.update(user_id: bookuser.user_id)
       Bookuser.where(book_id: bookuser.book_id).delete
 
       flash[:notice] = "#{bookuser.user.nickname || bookuser.user.username} 对 #{bookuser.book.code} 的认领已审核。"
@@ -88,6 +88,12 @@ class BooksController < ApplicationController
     end
 
     redirect "/#{params[:book_code]}"
+  end
+
+  # 注意: 本方法应该放在最后
+  get '/:id' do
+    @book = Book[params[:id]]
+    slim :'/books/show_by_id'
   end
 
   def invoke_douban_book(isbn)
