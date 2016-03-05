@@ -15,6 +15,10 @@ require 'i18n'
 require 'i18n/backend/fallbacks'
 require 'faraday'
 
+log_file = File.new("meidebook.log", "a+")
+$stdout.reopen(log_file)
+$stderr.reopen(log_file)
+
 Dir.glob("#{Sinatra::Application.settings.root}/{lib,helpers,uploaders}/*.rb").each { |file| require file }
 Dir.glob("#{Sinatra::Application.settings.root}/{controllers}/*.rb").sort.each { |file| require file }
 

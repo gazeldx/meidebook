@@ -4,6 +4,12 @@ class ApplicationController < Sinatra::Base
 
   register Sinatra::Flash
 
+  configure :production, :development do
+    LOGGER = Logger.new("meidebook.log")
+    enable :logging, :dump_errors
+    set :raise_errors, true
+  end
+
   set :bind, '0.0.0.0' # 允许在非本机访问本服务
   set :root, Sinatra::Application.settings.root
   set :public_folder, File.expand_path("#{root}/public", __FILE__)
