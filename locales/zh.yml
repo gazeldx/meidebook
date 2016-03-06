@@ -27,6 +27,7 @@ zh:
   login_without_password_and_register_tip: 无需注册，无需密码，只要用户名，就可直接登入
 
   user:
+    index: 所有用户
     username: 用户名
     password: 密码
     domain: 个性域名

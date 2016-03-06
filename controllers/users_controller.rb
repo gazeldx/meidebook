@@ -1,9 +1,18 @@
 class UsersController < ApplicationController
+  get '/' do
+    if admin?
+      @users = User.all
+      slim :'/users/index'
+    end
+  end
+
   post '/' do
     user = User.new(username: params[:username],
                     domain: User.default_domain,
                     password: Digest::SHA1.hexdigest(params[:password]),
-                    password_hint: params[:password_hint])
+                    password_hint: params[:password_hint],
+                    created_at: Time.now,
+                    updated_at: Time.now)
 
     if user.valid?
       user.save

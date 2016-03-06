@@ -26,7 +26,7 @@ class RootController < ApplicationController
   post '/simple_login' do
     @user = User.find(username: params[:username])
     if @user.nil?
-      user = User.new(username: params[:username], domain: User.default_domain, password: Digest::SHA1.hexdigest(''))
+      user = User.new(username: params[:username], domain: User.default_domain, password: Digest::SHA1.hexdigest(''), created_at: Time.now, updated_at: Time.now)
       if user.valid?
         user.save
         login_and_redirect(user)

@@ -1,0 +1,14 @@
+- content_for :title do
+  = I18n.t('user.index')
+
+.hd
+  h1.page_title = I18n.t('user.index')
+
+.bd
+  div class='weui_cells weui_cells_access'
+    - @users.each do |user|
+      a class='weui_cell' href="/u/#{user.domain}"
+        div class='weui_cell_bd weui_cell_primary'
+          p = user.nickname_
+        .weui_cell_ft
+          = user.created_at.nil? ? '' : user.created_at.strftime("%-m月%-d日 %H:%M")

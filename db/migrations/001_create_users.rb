@@ -10,5 +10,10 @@ Sequel.migration do
       index :username
       index :email
     end
+
+    # 下面的这些列是在之后的migration文件中加入的
+    # add_column :users, :domain, String
+    # add_column :users, :created_at, Time
+    # add_column :users, :updated_at, Time
   end
 end
